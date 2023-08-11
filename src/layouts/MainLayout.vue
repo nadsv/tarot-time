@@ -25,13 +25,14 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      class="bg-secondary"
     >
-      <q-list >
+      <q-list>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
-          class="text-accent"
+          class="text-accent menu-item"
         />
       </q-list>
     </q-drawer>
@@ -48,18 +49,17 @@ import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue'
 
 const essentialLinks: EssentialLinkProps[] = [
   {
-    title: 'Да/Нет',
+    title: 'ДА/НЕТ',
     caption: 'Быстрый ответ на конкретный вопрос',
     link: 'https://quasar.dev'
   },
   {
-    title: 'Карта Дня',
+    title: 'КАРТА ДНЯ',
     caption: 'Расклад на день',
     link: 'https://github.com/quasarframework'
   },
   {
     title: 'Контакты',
-    caption: 'Связаться с авторами',
     link: 'https://chat.quasar.dev'
   },
 ];
@@ -70,3 +70,11 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
+
+<style scoped>
+.menu-item {
+  font-family: 'Bad Script', sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+}
+</style>

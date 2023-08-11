@@ -22,22 +22,6 @@ const todos = ref<Todo[]>([
   {
     id: 1,
     content: 'ct1'
-  },
-  {
-    id: 2,
-    content: 'ct2'
-  },
-  {
-    id: 3,
-    content: 'ct3'
-  },
-  {
-    id: 4,
-    content: 'ct4'
-  },
-  {
-    id: 5,
-    content: 'ct5'
   }
 ]);
 const meta = ref<Meta>({
@@ -45,7 +29,7 @@ const meta = ref<Meta>({
 });
 </script>
 
-<style>
+<style scoped>
 .bckgrnd {
   background-image: url(./src/assets/RPG_40_Colorful_beautiful_esoteric_floric_background_atmospher_3.jpg);
   background-repeat: repeat;
