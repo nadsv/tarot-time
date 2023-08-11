@@ -13,6 +13,10 @@
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
 import { ref } from 'vue';
+import { useQuasar } from 'quasar';
+
+const $q = useQuasar();
+$q.dark.set(true);
 
 const todos = ref<Todo[]>([
   {
