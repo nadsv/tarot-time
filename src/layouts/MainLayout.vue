@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar >
         <q-btn
           flat
           dense
@@ -10,12 +10,14 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
+        <q-avatar square >
+          <img src="~assets/tarot-time-logo.png">
+        </q-avatar>
 
         <q-toolbar-title>
-          Quasar App
+          ВРЕМЯ ТАРО
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -24,17 +26,12 @@
       show-if-above
       bordered
     >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
+      <q-list >
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
+          class="text-accent"
         />
       </q-list>
     </q-drawer>
@@ -53,19 +50,16 @@ const essentialLinks: EssentialLinkProps[] = [
   {
     title: 'Да/Нет',
     caption: 'Быстрый ответ на конкретный вопрос',
-    icon: 'school',
     link: 'https://quasar.dev'
   },
   {
     title: 'Карта Дня',
     caption: 'Расклад на день',
-    icon: 'code',
     link: 'https://github.com/quasarframework'
   },
   {
     title: 'Контакты',
     caption: 'Связаться с авторами',
-    icon: 'chat',
     link: 'https://chat.quasar.dev'
   },
 ];

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page class="row items-center justify-evenly bckgrnd">
     <example-component
       title="Example component"
       active
@@ -44,3 +44,10 @@ const meta = ref<Meta>({
   totalCount: 1200
 });
 </script>
+
+<style>
+.bckgrnd {
+  background-image: url(./src/assets/background.jpg);
+  background-repeat: repeat;
+}
+</style>
