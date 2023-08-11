@@ -47,7 +47,7 @@ const meta = ref<Meta>({
 
 <style>
 .bckgrnd {
-  background-image: url(./src/assets/background.jpg);
+  background-image: url(./src/assets/RPG_40_Colorful_beautiful_esoteric_floric_background_atmospher_3.jpg);
   background-repeat: repeat;
 }
 </style>
