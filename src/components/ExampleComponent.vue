@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>Карты Таро не предсказывают твое будущее. Они его создают.</p>
+    <p class="moto">
+      Карты Таро не предсказывают твое будущее. Они его создают.
+    </p>
   </div>
 </template>
 
@@ -25,5 +27,10 @@ function increment() {
 }
 
 const todoCount = computed(() => props.todos.length);
-
 </script>
+
+<style scoped>
+.moto {
+  font-size: 50px;
+}
+</style>

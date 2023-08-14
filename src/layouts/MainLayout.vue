@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar >
+      <q-toolbar>
         <q-btn
           flat
           dense
@@ -10,14 +10,11 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-        <q-avatar square >
-          <img src="~assets/tarot-time-logo.png">
+        <q-avatar square>
+          <img src="~assets/tarot-time-logo.png" />
         </q-avatar>
 
-        <q-toolbar-title>
-          ВРЕМЯ ТАРО
-        </q-toolbar-title>
-
+        <q-toolbar-title class="title"> Время Таро </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -25,7 +22,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      class="bg-secondary"
+      style="background-image: url(./src/assets/bg-menu.jpg)"
     >
       <q-list>
         <EssentialLink
@@ -45,36 +42,44 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue';
+import EssentialLink, {
+  EssentialLinkProps,
+} from 'components/EssentialLink.vue';
 
 const essentialLinks: EssentialLinkProps[] = [
   {
-    title: 'ДА/НЕТ',
-    caption: 'Быстрый ответ на конкретный вопрос',
-    link: 'https://quasar.dev'
+    title: 'Да/Нет',
+    link: 'https://quasar.dev',
   },
   {
-    title: 'КАРТА ДНЯ',
-    caption: 'Расклад на день',
-    link: 'https://github.com/quasarframework'
+    title: 'Карта дня',
+    link: 'https://github.com/quasarframework',
   },
   {
     title: 'Контакты',
-    link: 'https://chat.quasar.dev'
+    link: 'https://chat.quasar.dev',
   },
 ];
 
-const leftDrawerOpen = ref(false)
+const leftDrawerOpen = ref(false);
 
 function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value
+  leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
 
 <style scoped>
-.menu-item {
-  font-family: 'Bad Script', sans-serif;
+.title {
+  font-family: 'vinqueregular';
   font-size: 30px;
-  font-weight: 900;
+}
+.menu-item {
+  font-family: 'vinqueregular';
+  font-size: 24px;
+}
+
+.bckgrnd-menu {
+  background-image: url(./src/assets/bg-menu.jpg);
+  background-size: cover;
 }
 </style>

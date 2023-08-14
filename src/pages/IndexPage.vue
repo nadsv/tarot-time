@@ -21,17 +21,17 @@ $q.dark.set(true);
 const todos = ref<Todo[]>([
   {
     id: 1,
-    content: 'ct1'
-  }
+    content: 'ct1',
+  },
 ]);
 const meta = ref<Meta>({
-  totalCount: 1200
+  totalCount: 1200,
 });
 </script>
 
 <style scoped>
 .bckgrnd {
-  background-image: url(./src/assets/RPG_40_Colorful_beautiful_esoteric_floric_background_atmospher_3.jpg);
-  background-repeat: repeat;
+  background-image: url(./src/assets/bg-main.jpg);
+  background-size: cover;
 }
 </style>
