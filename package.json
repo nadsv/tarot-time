@@ -2,7 +2,7 @@
   "name": "tarot-time",
   "version": "0.0.1",
   "description": "Devination by tarot cards online",
-  "productName": "tarot-time-app",
+  "productName": "Время Таро",
   "author": "Veranona <nadsvezh@yandex.ru>",
   "private": true,
   "scripts": {

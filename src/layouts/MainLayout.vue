@@ -19,7 +19,7 @@
       </q-toolbar>
       <div class="hrzn-menu-container">
         <q-separator></q-separator>
-        <q-toolbar
+        <nav
           style="
             background-image: url(./src/assets/bg-menu.jpg);
             background-repeat: repeat;
@@ -38,7 +38,7 @@
             v-bind="link"
             class="text-accent menu-link"
           />
-        </q-toolbar>
+        </nav>
       </div>
     </q-header>
     <div class="vrtl-menu-container">
@@ -152,5 +152,10 @@ function toggleLeftDrawer() {
 .menu-link {
   font-family: 'vinqueregular';
   font-size: 18px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
