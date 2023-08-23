@@ -5,3 +5,12 @@
   font-weight: normal;
   font-style: normal;
 }
+:root {
+  --card-height: 200px;
+}
+
+@media (max-width: 500px) {
+  :root {
+    --card-height: 150px;
+  }
+}

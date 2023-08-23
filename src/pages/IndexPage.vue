@@ -9,10 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { Todo, Meta } from 'components/models';
-import TarotDeck from 'src/components/TarotDeck.vue';
+import TarotDeck from 'src/components/readings/TarotDeck.vue';
 import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
-import { ref } from 'vue';
 import { useQuasar } from 'quasar';
 
 const $q = useQuasar();

@@ -11,65 +11,23 @@
           @click="toggleLeftDrawer"
           class="menu-visibility"
         />
+
         <q-avatar square>
           <img src="~assets/tarot-time-logo.png" />
         </q-avatar>
 
         <q-toolbar-title class="title"> Время Таро </q-toolbar-title>
       </q-toolbar>
-      <div class="hrzn-menu-container">
-        <q-separator></q-separator>
-        <nav
-          style="
-            background-image: url(./src/assets/bg-menu.jpg);
-            background-repeat: repeat;
-          "
-        >
-          <EssentialLink
-            v-for="link in readings"
-            :key="link.title"
-            v-bind="link"
-            class="text-accent menu-reading"
-          />
-          <q-space />
-          <EssentialLink
-            v-for="link in links"
-            :key="link.title"
-            v-bind="link"
-            class="text-accent menu-link"
-          />
-        </nav>
-      </div>
+
+      <horizontal-menu :readings="readings" :links="links"></horizontal-menu>
     </q-header>
-    <div class="vrtl-menu-container">
-      <q-drawer
-        v-model="leftDrawerOpen"
-        bordered
-        :width="270"
-        style="
-          background-image: url(./src/assets/bg-menu.jpg);
-          background-repeat: repeat;
-        "
-      >
-        <q-list>
-          <EssentialLink
-            v-for="link in readings"
-            :key="link.title"
-            v-bind="link"
-            class="text-accent menu-reading"
-          />
-        </q-list>
-        <q-separator spaced />
-        <q-list>
-          <EssentialLink
-            v-for="link in links"
-            :key="link.title"
-            v-bind="link"
-            class="text-accent menu-link"
-          />
-        </q-list>
-      </q-drawer>
-    </div>
+
+    <vertical-menu
+      :open="leftDrawerOpen"
+      :readings="readings"
+      :links="links"
+      @update-left-drawer-open="(isOpen) => (leftDrawerOpen = isOpen)"
+    ></vertical-menu>
 
     <q-page-container>
       <router-view />
@@ -78,32 +36,41 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import EssentialLink, {
-  EssentialLinkProps,
-} from 'components/EssentialLink.vue';
+import { ref, computed } from 'vue';
+import HorizontalMenu from 'src/components/HorizontalMenu.vue';
+import VerticalMenu from 'src/components/VerticalMenu.vue';
+import { Link } from 'src/components/models.ts';
 
-const readings: EssentialLinkProps[] = [
+const allLinks: Link[] = [
   {
     title: 'Да или Нет?',
     link: 'https://quasar.dev',
+    type: 'reading',
   },
   {
     title: 'Карта дня',
     link: 'https://github.com/quasarframework',
+    type: 'reading',
   },
   {
     title: 'Линейные расклады',
     link: 'https://github.com/quasarframework',
+    type: 'reading',
   },
-];
-
-const links: EssentialLinkProps[] = [
   {
     title: 'Контакты',
     link: 'https://chat.quasar.dev',
+    type: 'essential',
   },
 ];
+
+const readings = computed(() => {
+  return allLinks.filter((item) => item.type === 'reading');
+});
+
+const links = computed(() => {
+  return allLinks.filter((item) => item.type === 'essential');
+});
 
 const leftDrawerOpen = ref(false);
 
@@ -117,45 +84,14 @@ function toggleLeftDrawer() {
   display: none;
 }
 
-.hrzn-menu-container {
-  display: block;
-}
-
-.vrtl-menu-container {
-  display: none;
-}
-
 @media (max-width: 1023.99px) {
   .menu-visibility {
     display: flex;
-  }
-
-  .hrzn-menu-container {
-    display: none;
-  }
-
-  .vrtl-menu-container {
-    display: block;
   }
 }
 
 .title {
   font-family: 'vinqueregular';
   font-size: 30px;
-}
-
-.menu-reading {
-  font-family: 'vinqueregular';
-  font-size: 24px;
-}
-
-.menu-link {
-  font-family: 'vinqueregular';
-  font-size: 18px;
-}
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
 }
 </style>

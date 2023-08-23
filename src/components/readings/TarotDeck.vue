@@ -18,7 +18,6 @@ import { computed, ref } from 'vue';
 <style scoped>
 .deck {
   position: relative;
-  --card-height: 200px;
   width: calc(var(--card-height) * 2 - 2px);
   height: calc(var(--card-height) * 2 - 2px);
   background-color: black;
@@ -53,10 +52,6 @@ import { computed, ref } from 'vue';
 }
 
 @media (max-width: 500px) {
-  .deck {
-    --card-height: 150px;
-  }
-
   .card {
     border-width: 3px;
     clip-path: polygon(0% 0%, 13.7px 0%, 0% 100%);
