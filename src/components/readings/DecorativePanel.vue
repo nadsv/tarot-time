@@ -34,7 +34,7 @@ withDefaults(defineProps<Props>(), {
   justify-content: center;
   flex-basis: 599px;
   height: calc(100vh - 130px);
-  min-height: 500px;
+  min-height: calc(var(--card-height) * 2 + 100px);
   opacity: 0.8;
   border-image-slice: 27 27 27 27;
   border-image-width: 15px 15px 15px 15px;
@@ -43,5 +43,8 @@ withDefaults(defineProps<Props>(), {
   border-image-source: url(./src/assets/bi-panel-2.png);
   border-style: solid;
   margin: 15px;
+}
+footer {
+  padding-top: 50px;
 }
 </style>

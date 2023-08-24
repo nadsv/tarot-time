@@ -1,18 +1,41 @@
 <template>
   <div class="deck">
     <div
-      v-for="num in 78"
+      v-for="num in props.cardsNumber"
       :key="num"
       class="card"
-      :style="{
-        transform: 'rotate(' + 4.61538461538 * num + 'deg)',
-      }"
+      :style="deckStyle(num)"
     ></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { onMounted, ref } from 'vue';
+
+const props = defineProps<{
+  stacked: boolean;
+  cardHeight: number;
+  cardsNumber: number;
+}>();
+
+const deckStyle = (num: number): { transform: string; 'clip-path': string } => {
+  const angle = (360 / props.cardsNumber) * num;
+  const rad = ((360 / props.cardsNumber) * Math.PI) / 180;
+  const line =
+    num === props.cardsNumber
+      ? Math.tan(rad) * props.cardHeight - 1.5
+      : Math.tan(rad) * 200;
+  if (props.stacked) {
+    return {
+      transform: 'unset',
+      'clip-path': 'unset',
+    };
+  }
+  return {
+    transform: 'rotate(' + angle + 'deg)',
+    'clip-path': 'polygon(0% 0%,' + line + 'px 0%, 0% 100%)',
+  };
+};
 </script>
 
 <style scoped>
@@ -40,12 +63,11 @@ import { computed, ref } from 'vue';
   background-position: 50% 50%;
   border: 5px solid black;
   border-radius: 5px;
-  clip-path: polygon(0% 0%, 18.5px 0%, 0% 100%);
   transition: box-shadow 0.5s;
 }
 
 .card:hover {
-  clip-path: unset;
+  clip-path: unset !important;
   z-index: 78;
   opacity: 60%;
   box-shadow: 0px 0px 0px 4px #cd28a4;

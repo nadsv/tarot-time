@@ -50,7 +50,6 @@ const emit = defineEmits<{
 watch(
   () => props.open,
   () => {
-    console.log('prop value changed', props.open);
     if (leftDrawerOpen.value !== props.open) {
       leftDrawerOpen.value = props.open;
     }
@@ -60,7 +59,6 @@ watch(
 watch(
   () => leftDrawerOpen.value,
   () => {
-    console.log('leftDrawerOpenchanged', leftDrawerOpen.value);
     emit('updateLeftDrawerOpen', leftDrawerOpen.value);
   }
 );
