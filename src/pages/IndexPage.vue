@@ -34,15 +34,15 @@ const el = document.querySelector(':root');
 const c = getComputedStyle(el);
 let cardHeight = ref(150);
 
-const onResize = (size) => {
+const onResize = () => {
   cardHeight.value = parseInt(c.getPropertyValue('--card-height'));
 };
 
-const stacked = ref(false);
+const stacked = ref(true);
 
 const shuffleCards = () => {
   console.log('Shuffle cards');
-  stacked.value = true;
+  stacked.value = !stacked.value;
 };
 </script>
 

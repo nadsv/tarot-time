@@ -11,6 +11,6 @@
 
 @media (max-width: 500px) {
   :root {
-    --card-height: 150px;
+    --card-height: 130px;
   }
 }
