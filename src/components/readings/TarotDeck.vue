@@ -5,13 +5,33 @@
       :key="num"
       :class="{ card: true, 'card--stacked': props.stacked }"
       :style="deckStyle(num)"
+      ref="cardArray"
     ></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, onBeforeUnmount, ref } from 'vue';
 import { shapeData } from './helpers';
+
+const cardArray = ref<HTMLInputElement | null>(null);
+const card = ref<HTMLInputElement | null>(null);
+
+const getEndOfSuffling = (event: TransitionEvent) => {
+  if (event.propertyName === 'opacity') {
+    emit('laidOut', false);
+  }
+};
+
+onMounted(() => {
+  card.value = cardArray.value[props.cardsNumber - 1];
+
+  card.value.addEventListener('transitionend', getEndOfSuffling);
+});
+
+onBeforeUnmount(() => {
+  card.value.removeEventListener('click', getEndOfSuffling);
+});
 
 const props = defineProps<{
   stacked: boolean;
@@ -19,26 +39,27 @@ const props = defineProps<{
   cardsNumber: number;
 }>();
 
+const emit = defineEmits<{
+  laidOut: [value: boolean];
+}>();
+
 const deckStyle = (
   num: number
 ): {
   transform: string;
-  'clip-path': string;
   transition: string;
   opacity: number;
 } => {
-  const { angle, line } = shapeData(num, props.cardsNumber, props.cardHeight);
+  const { angle } = shapeData(num, props.cardsNumber, props.cardHeight);
   if (props.stacked) {
     return {
       transform: 'unset',
-      'clip-path': 'unset',
       transition: 'unset',
       opacity: 0,
     };
   }
   return {
     transform: 'rotate( -' + angle + 'deg)',
-    'clip-path': 'unset',
     opacity: 1,
     transition: 'opacity ' + '0s ' + (0.05 * num + 0.6) + 's, left 0.4s 0.1s',
   };
@@ -48,8 +69,8 @@ const deckStyle = (
 <style scoped>
 .deck {
   position: relative;
-  width: calc(var(--card-height) * 2 - 2px);
-  height: calc(var(--card-height) * 2 - 2px);
+  width: calc(var(--card-height) * 2);
+  height: calc(var(--card-height) * 2);
 }
 
 .card {

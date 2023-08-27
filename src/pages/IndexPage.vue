@@ -1,29 +1,40 @@
 <template>
   <q-page class="row items-strech justify-evenly bckgrnd">
-    <decorative-panel panel-color="#7f3aad"
-      ><tarot-deck
+    <decorative-panel panel-color="#7f3aad">
+      <template v-slot:header> Линейный расклад на любовь </template>
+      <tarot-deck
         :stacked="stacked"
         :card-height="cardHeight"
         :cardsNumber="78"
       ></tarot-deck>
-      <template v-slot:footer>
+      <template v-slot:actionPanel>
         <q-btn
           color="dark"
           text-color="accent"
           label="Перемешать"
           @click="shuffleCards"
+          @laid-out="(value: boolean) => {}"
         />
       </template>
+      <template v-slot:footer> Выбери 1 карту <br />двойным щелчком</template>
       <q-resize-observer @resize="onResize" />
     </decorative-panel>
-    <decorative-panel panel-color="#ffe4c4">Hello!</decorative-panel>
-    <decorative-panel panel-color="#f5e274">It is a rainbow!</decorative-panel>
+    <decorative-panel panel-color="#ffe4c4"
+      ><template v-slot:header>Выбранные карты</template>
+      <selected-cards></selected-cards>
+      <template v-slot:footer> Карты <br />не выбраны</template>
+    </decorative-panel>
+    <decorative-panel panel-color="#f5e274"
+      ><template v-slot:header>Толкование</template>It is a rainbow!
+      <template v-slot:footer> Карты <br />не выбраны</template>
+    </decorative-panel>
   </q-page>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import TarotDeck from 'src/components/readings/TarotDeck.vue';
+import SelectedCards from 'src/components/readings/SelectedCards.vue';
 import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
 import { useQuasar } from 'quasar';
 
@@ -38,11 +49,11 @@ const onResize = () => {
   cardHeight.value = parseInt(c.getPropertyValue('--card-height'));
 };
 
-const stacked = ref(true);
+const stacked = ref(false);
 
 const shuffleCards = () => {
-  console.log('Shuffle cards');
-  stacked.value = !stacked.value;
+  stacked.value = true;
+  setTimeout(() => (stacked.value = false));
 };
 </script>
 

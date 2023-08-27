@@ -6,12 +6,17 @@
     }"
   >
     <header>
-      <slot name="header"></slot>
+      <h2 class="panel-name">
+        <slot name="header"></slot>
+      </h2>
     </header>
     <main>
       <slot></slot>
     </main>
-    <footer>
+    <div class="action-panel">
+      <slot name="actionPanel"></slot>
+    </div>
+    <footer class="text-accent">
       <slot name="footer"></slot>
     </footer>
   </div>
@@ -34,7 +39,7 @@ withDefaults(defineProps<Props>(), {
   justify-content: center;
   flex-basis: 599px;
   height: calc(100vh - 130px);
-  min-height: calc(var(--card-height) * 2 + 100px);
+  min-height: calc(var(--card-height) * 3 + 100px);
   opacity: 0.8;
   border-image-slice: 27 27 27 27;
   border-image-width: 15px 15px 15px 15px;
@@ -44,7 +49,35 @@ withDefaults(defineProps<Props>(), {
   border-style: solid;
   margin: 15px;
 }
-footer {
+
+header {
+  margin-bottom: auto;
+  background-color: #b67729;
+  padding: 0 5px 3px 5px;
+}
+
+.panel-name {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 14px;
+  max-width: 270px;
+  text-wrap: balance;
+}
+
+.action-panel {
   padding-top: 50px;
+  margin-bottom: auto;
+}
+
+footer {
+  padding: 15px 20px 15px 20px;
+  align-self: end;
+  background-color: #8d118a;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  text-align: center;
 }
 </style>
