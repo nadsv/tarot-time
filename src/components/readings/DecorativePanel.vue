@@ -40,7 +40,6 @@ withDefaults(defineProps<Props>(), {
   flex-basis: 599px;
   height: calc(100vh - 130px);
   min-height: calc(var(--card-height) * 3 + 100px);
-  opacity: 0.8;
   border-image-slice: 27 27 27 27;
   border-image-width: 15px 15px 15px 15px;
   border-image-outset: 8px 8px 8px 8px;

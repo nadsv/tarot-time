@@ -77,7 +77,7 @@ const deckStyle = (
   position: absolute;
   left: 50%;
   transform-origin: left bottom;
-  width: calc(var(--card-height) * 0.65);
+  width: calc(var(--card-height) * 0.575);
   height: var(--card-height);
   background-color: lightblue;
   border: 1px solid rgb(0, 0, 0);
@@ -88,6 +88,7 @@ const deckStyle = (
   border-radius: 10px;
   transition: box-shadow 0.5s;
   z-index: 9;
+  cursor: pointer;
 }
 
 .card:first-child {

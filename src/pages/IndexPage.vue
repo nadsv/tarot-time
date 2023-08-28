@@ -1,6 +1,6 @@
 <template>
   <q-page class="row items-strech justify-evenly bckgrnd">
-    <decorative-panel panel-color="#7f3aad">
+    <decorative-panel :panel-color="panelColors[0]">
       <template v-slot:header> Линейный расклад на любовь </template>
       <tarot-deck
         :stacked="stacked"
@@ -19,12 +19,12 @@
       <template v-slot:footer> Выбери 1 карту <br />двойным щелчком</template>
       <q-resize-observer @resize="onResize" />
     </decorative-panel>
-    <decorative-panel panel-color="#ffe4c4"
+    <decorative-panel :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранные карты</template>
       <selected-cards></selected-cards>
       <template v-slot:footer> Карты <br />не выбраны</template>
     </decorative-panel>
-    <decorative-panel panel-color="#f5e274"
+    <decorative-panel :panel-color="panelColors[2]"
       ><template v-slot:header>Толкование</template>It is a rainbow!
       <template v-slot:footer> Карты <br />не выбраны</template>
     </decorative-panel>
@@ -40,6 +40,8 @@ import { useQuasar } from 'quasar';
 
 const $q = useQuasar();
 $q.dark.set(true);
+
+const panelColors = ref(["rgba(127,58,173, 0.8)", "rgba(255,228,196, 0.8)", "rgba(245,226,116, 0.8)"]);
 
 const el = document.querySelector(':root');
 const c = getComputedStyle(el);
