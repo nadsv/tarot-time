@@ -14,8 +14,8 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue';
 import { shapeData } from './helpers';
 
-const cardArray = ref<HTMLInputElement | null>(null);
-const card = ref<HTMLInputElement | null>(null);
+const cardArray = ref<HTMLInputElement>([]);
+const card = ref<HTMLInputElement>([]);
 
 const getEndOfSuffling = (event: TransitionEvent) => {
   if (event.propertyName === 'opacity') {

@@ -1,31 +1,39 @@
 <template>
   <div class="row q-gutter-md containter">
-    <div v-for="num in 4" :key="num" class="card is-flipped" ref="cardArray" @click="flipCard(num -1)">
-      <div class="card__face card__face--front text-negative" :style="cardFaceStyle(num-1)"></div>
+    <div
+      v-for="num in 3"
+      :key="num"
+      class="card is-flipped"
+      ref="cardArray"
+      @click="flipCard(num - 1)"
+    >
+      <div
+        class="card__face card__face--front text-negative"
+        :style="cardFaceStyle(num - 1)"
+      ></div>
       <div class="card__face card__face--back"></div>
-   </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue';
 
-const cardArray = ref<HTMLInputElement[] | null>(null);
+const cardArray = ref<HTMLInputElement[]>([]);
 
-const flipCard = (key: number)=> {
+const flipCard = (key: number) => {
   cardArray.value[key].classList.toggle('is-flipped');
-}
+};
 
-const cardFaceStyle = (num: number): {'background-image': string} => {
-  const c = Math.floor(Math.random() * 78)
+const cardFaceStyle = (num: number): { 'background-image': string } => {
+  const c = Math.floor(Math.random() * 78);
   return {
-      'background-image': "url(./src/assets/cards-rider–waite/"+c+".png)"
-  }
+    'background-image': 'url(./src/assets/cards-rider–waite/' + c + '.png)',
+  };
 };
 </script>
 
 <style scoped>
-
 .container {
   counter-reset: number 1;
 }

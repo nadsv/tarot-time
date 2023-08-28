@@ -71,7 +71,7 @@ header {
 }
 
 footer {
-  padding: 15px 20px 15px 20px;
+  padding: 7px 10px;
   align-self: end;
   background-color: #8d118a;
   margin-right: 5px;
