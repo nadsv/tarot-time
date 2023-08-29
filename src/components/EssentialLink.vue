@@ -7,9 +7,9 @@
 </template>
 
 <script setup lang="ts">
-import { Link, Reading } from 'src/config/models';
+import { Link } from 'src/config/models';
 
-withDefaults(defineProps<Link | Reading>(), {
+withDefaults(defineProps<Link>(), {
   link: '#',
 });
 </script>
