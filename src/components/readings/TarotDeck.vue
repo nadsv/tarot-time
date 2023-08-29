@@ -79,7 +79,7 @@ const deckStyle = (
   transform-origin: left bottom;
   width: calc(var(--card-height) * 0.575);
   height: var(--card-height);
-  background-color: lightblue;
+  background-color: blueviolet;
   border: 1px solid rgb(0, 0, 0);
   background-image: url(./src/assets/bg-back.jpg);
   background-size: cover;

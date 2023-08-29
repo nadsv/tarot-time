@@ -19,13 +19,13 @@
         <q-toolbar-title class="title"> Время Таро </q-toolbar-title>
       </q-toolbar>
 
-      <horizontal-menu :readings="readings" :links="links"></horizontal-menu>
+      <horizontal-menu :readings="config.READINGS" :links="config.LINKS"></horizontal-menu>
     </q-header>
 
     <vertical-menu
       :open="leftDrawerOpen"
-      :readings="readings"
-      :links="links"
+      :readings="config.READINGS"
+      :links="config.LINKS"
       @update-left-drawer-open="(isOpen) => (leftDrawerOpen = isOpen)"
     ></vertical-menu>
 
@@ -39,38 +39,8 @@
 import { ref, computed } from 'vue';
 import HorizontalMenu from 'src/components/HorizontalMenu.vue';
 import VerticalMenu from 'src/components/VerticalMenu.vue';
-import { Link } from 'src/components/models.ts';
+import { config } from 'src/config/';
 
-const allLinks: Link[] = [
-  {
-    title: 'Да или Нет?',
-    link: 'https://quasar.dev',
-    type: 'reading',
-  },
-  {
-    title: 'Карта дня',
-    link: 'https://github.com/quasarframework',
-    type: 'reading',
-  },
-  {
-    title: 'Линейные расклады',
-    link: 'https://github.com/quasarframework',
-    type: 'reading',
-  },
-  {
-    title: 'Контакты',
-    link: 'https://chat.quasar.dev',
-    type: 'essential',
-  },
-];
-
-const readings = computed(() => {
-  return allLinks.filter((item) => item.type === 'reading');
-});
-
-const links = computed(() => {
-  return allLinks.filter((item) => item.type === 'essential');
-});
 
 const leftDrawerOpen = ref(false);
 

@@ -33,11 +33,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
-import { Link } from './models';
+import { Link, Reading } from 'src/config/models';
 
 const props = defineProps<{
   readings: Link[];
-  links: Link[];
+  links: Reading[];
   open: boolean;
 }>();
 

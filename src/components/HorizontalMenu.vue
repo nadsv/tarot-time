@@ -26,10 +26,10 @@
 
 <script setup lang="ts">
 import EssentialLink from 'components/EssentialLink.vue';
-import { Link } from './models';
+import { Link, Reading } from 'src/config/models';
 
 defineProps<{
-  readings: Link[];
+  readings: Reading[];
   links: Link[];
 }>();
 </script>
