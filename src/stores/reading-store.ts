@@ -6,7 +6,14 @@ export const useReadingStore = defineStore('readings', {
     currentCardArray: config.INITIAL_ARRAY_OF_CARDS,
     cardsInReading: [],
     currentNumberOfCards: config.TOTAL_NUMBER_OF_CARDS,
-    heightOfCards: config.CARD_HEIGHT
+    reading: {
+          id: 0,
+          title: "Да или Нет?",
+          number: 1,
+          disabled: false,
+          owner: 0,
+          link: "readings/"
+      }
   }),
 
   getters: {

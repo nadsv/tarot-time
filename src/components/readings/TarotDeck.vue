@@ -3,7 +3,7 @@
     <div
       v-for="(num, index) in currentCardArray"
       :key="num"
-      :class="{ card: true, 'card--stacked': props.stacked, 'card--deleted': false }"
+      :class="{ card: true, 'card--stacked': props.stacked }"
       :style="deckStyle(index)"
       ref="cardArray"
       @dblclick="chooseCard(num)"
@@ -111,8 +111,8 @@ const deckStyle = (
 
 .card:hover {
   clip-path: unset !important;
-  z-index: 999;
-  box-shadow: 0px 0px 4px 4px rgb(205, 40, 164);
+  box-shadow: 0px 0px 4px 4px rgb(233, 205, 81);
+  filter: brightness(150%);
 }
 
 .card--deleted {

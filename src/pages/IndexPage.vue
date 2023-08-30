@@ -1,7 +1,7 @@
 <template>
   <q-page class="row items-strech justify-evenly bckgrnd">
     <decorative-panel :panel-color="panelColors[0]">
-      <template v-slot:header> Линейный расклад на любовь </template>
+      <template v-slot:header> {{reading.title}} </template>
       <tarot-deck
         :stacked="stacked"
       ></tarot-deck>
@@ -34,7 +34,12 @@ import TarotDeck from 'src/components/readings/TarotDeck.vue';
 import SelectedCards from 'src/components/readings/SelectedCards.vue';
 import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
 import { useQuasar } from 'quasar';
-import { wordDeclination } from 'src/components/readings/helpers'
+import { wordDeclination } from 'src/components/readings/helpers';
+import { useReadingStore } from 'src/stores/reading-store';
+import { storeToRefs } from 'pinia';
+
+const store = useReadingStore();
+const { reading } = storeToRefs(store);
 
 const $q = useQuasar();
 $q.dark.set(true);
