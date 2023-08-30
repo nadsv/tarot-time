@@ -1,5 +1,6 @@
 export const config = Object.freeze({
     TOTAL_NUMBER_OF_CARDS: 78,
+    CARD_HEIGHT: 130,
     INITIAL_ARRAY_OF_CARDS: Array.from({ length: 78 }, (_, i) => i + 1),
     READINGS: [
         {

@@ -1,11 +1,12 @@
 <template>
   <div class="deck">
     <div
-      v-for="num in props.cardsNumber"
+      v-for="num in config.INITIAL_ARRAY_OF_CARDS"
       :key="num"
       :class="{ card: true, 'card--stacked': props.stacked }"
       :style="deckStyle(num)"
       ref="cardArray"
+      @dblclick="chooseCard(num)"
     ></div>
   </div>
 </template>
@@ -13,9 +14,10 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue';
 import { shapeData } from './helpers';
+import { config } from 'src/config/';
 
-const cardArray = ref<HTMLInputElement>([]);
-const card = ref<HTMLInputElement>([]);
+const cardArray = ref<HTMLInputElement[]>([]);
+const card = ref<HTMLInputElement>();
 
 const getEndOfSuffling = (event: TransitionEvent) => {
   if (event.propertyName === 'opacity') {
@@ -23,9 +25,12 @@ const getEndOfSuffling = (event: TransitionEvent) => {
   }
 };
 
-onMounted(() => {
-  card.value = cardArray.value[props.cardsNumber - 1];
+const chooseCard = (num: number) => {
+  console.log(num)
+}
 
+onMounted(() => {
+  card.value = cardArray.value[config.TOTAL_NUMBER_OF_CARDS - 1];
   card.value.addEventListener('transitionend', getEndOfSuffling);
 });
 
@@ -35,8 +40,6 @@ onBeforeUnmount(() => {
 
 const props = defineProps<{
   stacked: boolean;
-  cardHeight: number;
-  cardsNumber: number;
 }>();
 
 const emit = defineEmits<{
@@ -50,7 +53,7 @@ const deckStyle = (
   transition: string;
   opacity: number;
 } => {
-  const { angle } = shapeData(num, props.cardsNumber, props.cardHeight);
+  const { angle } = shapeData(num, config.TOTAL_NUMBER_OF_CARDS);
   if (props.stacked) {
     return {
       transform: 'unset',

@@ -4,8 +4,6 @@
       <template v-slot:header> Линейный расклад на любовь </template>
       <tarot-deck
         :stacked="stacked"
-        :card-height="cardHeight"
-        :cardsNumber="78"
       ></tarot-deck>
       <template v-slot:actionPanel>
         <q-btn
@@ -17,7 +15,6 @@
         />
       </template>
       <template v-slot:footer> Выбери 1 карту <br />двойным щелчком</template>
-      <q-resize-observer @resize="onResize" />
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранные карты</template>
@@ -45,11 +42,7 @@ const panelColors = ref(["rgba(127,58,173, 0.8)", "rgba(255,228,196, 0.8)", "rgb
 
 const el = document.querySelector(':root');
 const c = getComputedStyle(el);
-let cardHeight = ref(150);
 
-const onResize = () => {
-  cardHeight.value = parseInt(c.getPropertyValue('--card-height'));
-};
 
 const stacked = ref(false);
 

@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia';
+import { config } from 'src/config'
 
-export const useCounterStore = defineStore('readings', {
+export const useReadingsStore = defineStore('readings', {
   state: () => ({
-    currentNumberOfCards: 78,
-    heightOfCards: 130
+    currentCardArray: config.INITIAL_ARRAY_OF_CARDS,
+    currentNumberOfCards: config.TOTAL_NUMBER_OF_CARDS,
+    heightOfCards: config.CARD_HEIGHT
   }),
 
   getters: {
