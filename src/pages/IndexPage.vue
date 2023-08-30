@@ -14,7 +14,7 @@
           @laid-out="(value: boolean) => {}"
         />
       </template>
-      <template v-slot:footer> Выбери 1 карту <br />двойным щелчком</template>
+      <template v-slot:footer> Выбери 1 {{wordDeclination(1)}} <br />двойным щелчком</template>
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранные карты</template>
@@ -34,6 +34,7 @@ import TarotDeck from 'src/components/readings/TarotDeck.vue';
 import SelectedCards from 'src/components/readings/SelectedCards.vue';
 import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
 import { useQuasar } from 'quasar';
+import { wordDeclination } from 'src/components/readings/helpers'
 
 const $q = useQuasar();
 $q.dark.set(true);

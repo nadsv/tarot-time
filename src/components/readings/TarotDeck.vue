@@ -1,10 +1,10 @@
 <template>
   <div class="deck">
     <div
-      v-for="num in config.INITIAL_ARRAY_OF_CARDS"
+      v-for="(num, index) in currentCardArray"
       :key="num"
-      :class="{ card: true, 'card--stacked': props.stacked }"
-      :style="deckStyle(num)"
+      :class="{ card: true, 'card--stacked': props.stacked, 'card--deleted': false }"
+      :style="deckStyle(index)"
       ref="cardArray"
       @dblclick="chooseCard(num)"
     ></div>
@@ -13,8 +13,13 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue';
-import { shapeData } from './helpers';
+import { shapeData, removeCard, randomCard } from './helpers';
 import { config } from 'src/config/';
+import { useReadingStore } from 'src/stores/reading-store';
+import { storeToRefs } from 'pinia';
+
+const store = useReadingStore();
+const { currentCardArray, cardsInReading } = storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const card = ref<HTMLInputElement>();
@@ -25,8 +30,10 @@ const getEndOfSuffling = (event: TransitionEvent) => {
   }
 };
 
-const chooseCard = (num: number) => {
-  console.log(num)
+const chooseCard = () => {
+  const num = randomCard(currentCardArray.value.length);
+  currentCardArray.value = removeCard(num, currentCardArray.value); 
+  cardsInReading.value.push(num);
 }
 
 onMounted(() => {
@@ -53,7 +60,7 @@ const deckStyle = (
   transition: string;
   opacity: number;
 } => {
-  const { angle } = shapeData(num, config.TOTAL_NUMBER_OF_CARDS);
+  const { angle } = shapeData(num, currentCardArray.value.length);
   if (props.stacked) {
     return {
       transform: 'unset',
@@ -106,6 +113,10 @@ const deckStyle = (
   clip-path: unset !important;
   z-index: 999;
   box-shadow: 0px 0px 4px 4px rgb(205, 40, 164);
+}
+
+.card--deleted {
+  display: none;
 }
 
 @media (max-width: 500px) {

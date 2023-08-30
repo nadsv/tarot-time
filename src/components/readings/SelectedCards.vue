@@ -1,15 +1,15 @@
 <template>
   <div class="row q-gutter-md containter">
     <div
-      v-for="num in 3"
+      v-for="(num, index) in cardsInReading"
       :key="num"
       class="card is-flipped"
       ref="cardArray"
-      @click="flipCard(num - 1)"
+      @click="flipCard(index)"
     >
       <div
         class="card__face card__face--front text-negative"
-        :style="cardFaceStyle(num - 1)"
+        :style="cardFaceStyle(num)"
       ></div>
       <div class="card__face card__face--back"></div>
     </div>
@@ -18,6 +18,11 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue';
+import { useReadingStore } from 'src/stores/reading-store';
+import { storeToRefs } from 'pinia';
+
+const store = useReadingStore();
+const { cardsInReading } = storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 
@@ -26,9 +31,8 @@ const flipCard = (key: number) => {
 };
 
 const cardFaceStyle = (num: number): { 'background-image': string } => {
-  const c = Math.floor(Math.random() * 78);
   return {
-    'background-image': 'url(./src/assets/cards-rider–waite/' + c + '.png)',
+    'background-image': 'url(./src/assets/cards-rider–waite/' + num + '.png)',
   };
 };
 </script>
