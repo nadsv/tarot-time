@@ -19,7 +19,7 @@ import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
 const store = useReadingStore();
-const { currentCardArray, cardsInReading } = storeToRefs(store);
+const { currentCardArray, cardsInReading, reading } = storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const card = ref<HTMLInputElement>();
@@ -31,9 +31,12 @@ const getEndOfSuffling = (event: TransitionEvent) => {
 };
 
 const chooseCard = () => {
-  const num = randomCard(currentCardArray.value.length);
-  currentCardArray.value = removeCard(num, currentCardArray.value); 
-  cardsInReading.value.push(num);
+  const numberOfCards = reading.value.number - cardsInReading.value.length;
+  if (numberOfCards) {
+    const num = randomCard(currentCardArray.value.length);
+    currentCardArray.value = removeCard(num, currentCardArray.value); 
+    cardsInReading.value.push(num);
+  }
 }
 
 onMounted(() => {
@@ -111,7 +114,7 @@ const deckStyle = (
 
 .card:hover {
   clip-path: unset !important;
-  box-shadow: 0px 0px 4px 4px rgb(233, 205, 81);
+  box-shadow: 0px 0px 5px 5px #f5d254;
   filter: brightness(150%);
 }
 

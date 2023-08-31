@@ -12,7 +12,7 @@ export const removeCard = (num: number, arr: number[]) : number[] => {
 }
 
 export const randomCard = (max: number) : number => {
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max) *  ( (Math.random()>0.5)? 1 : -1 );
 }
 
 export const wordDeclination = (num: number): string => {

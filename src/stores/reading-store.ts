@@ -5,11 +5,12 @@ export const useReadingStore = defineStore('readings', {
   state: () => ({
     currentCardArray: config.INITIAL_ARRAY_OF_CARDS,
     cardsInReading: [],
+    openedCards: [],
     currentNumberOfCards: config.TOTAL_NUMBER_OF_CARDS,
     reading: {
           id: 0,
           title: "Да или Нет?",
-          number: 1,
+          number: 4,
           disabled: false,
           owner: 0,
           link: "readings/"

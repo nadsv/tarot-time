@@ -14,22 +14,31 @@
           @laid-out="(value: boolean) => {}"
         />
       </template>
-      <template v-slot:footer> Выбери 1 {{wordDeclination(1)}} <br />двойным щелчком</template>
+      <template v-slot:footer>{{ hintForCardDeck }}</template>
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранные карты</template>
       <selected-cards></selected-cards>
-      <template v-slot:footer> Карты <br />не выбраны</template>
+      <template v-slot:actionPanel>
+        <q-btn
+          v-if="!(reading.number - openedCards.length)"
+          color="dark"
+          text-color="accent"
+          label="Толковать"
+          @click="shuffleCards"
+        />
+      </template>
+      <template v-slot:footer>{{hintForCardReading}}</template>
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[2]"
       ><template v-slot:header>Толкование</template>It is a rainbow!
-      <template v-slot:footer> Карты <br />не выбраны</template>
+     
     </decorative-panel>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import TarotDeck from 'src/components/readings/TarotDeck.vue';
 import SelectedCards from 'src/components/readings/SelectedCards.vue';
 import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
@@ -39,7 +48,8 @@ import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
 const store = useReadingStore();
-const { reading } = storeToRefs(store);
+const { reading, cardsInReading, openedCards } = storeToRefs(store);
+
 
 const $q = useQuasar();
 $q.dark.set(true);
@@ -56,6 +66,18 @@ const shuffleCards = () => {
   stacked.value = true;
   setTimeout(() => (stacked.value = false));
 };
+
+
+const hintForCardDeck = computed(() => {
+  const numberOfCards = reading.value.number - cardsInReading.value.length;
+  return numberOfCards ? `Выберите ${numberOfCards} ${wordDeclination(numberOfCards)} двойным щелчком` : "Карты выбраны";
+});
+
+const hintForCardReading = computed(() => {
+  return (reading.value.number - cardsInReading.value.length)
+         ? `Сначала выберите карты` : (reading.value.number - openedCards.value.length)
+         ? `Переверните карты` : "Карты раскрыты";
+});
 </script>
 
 <style scoped>

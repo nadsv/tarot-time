@@ -16,13 +16,16 @@
     <div class="action-panel">
       <slot name="actionPanel"></slot>
     </div>
-    <footer class="text-accent">
-      <slot name="footer"></slot>
+    <footer class="text-accent" v-if="slots.footer">
+      <slot  name="footer"></slot>
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useSlots } from 'vue'
+const slots = useSlots()
+
 interface Props {
   panelColor?: string;
 }
