@@ -14,7 +14,7 @@
       <slot></slot>
     </main>
     <div class="action-panel">
-      <slot name="actionPanel"></slot>
+        <slot name="actionPanel"></slot>
     </div>
     <footer class="text-accent" v-if="slots.footer">
       <slot  name="footer"></slot>
@@ -81,5 +81,9 @@ footer {
   margin-bottom: 10px;
   font-size: 12px;
   text-align: center;
+}
+
+.fadeIn {
+  transition-duration: 1s;
 }
 </style>

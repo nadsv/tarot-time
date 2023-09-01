@@ -13,13 +13,13 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue';
-import { shapeData, removeCard, randomCard } from './helpers';
+import { shapeData, removeCard, randomCard, preloadImage } from './helpers';
 import { config } from 'src/config/';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
 const store = useReadingStore();
-const { currentCardArray, cardsInReading, reading } = storeToRefs(store);
+const { currentCardArray, cardsInReading, reading, collection } = storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const card = ref<HTMLInputElement>();
@@ -36,6 +36,7 @@ const chooseCard = () => {
     const num = randomCard(currentCardArray.value.length);
     currentCardArray.value = removeCard(num, currentCardArray.value); 
     cardsInReading.value.push(num);
+    preloadImage(Math.abs(num), collection.value);
   }
 }
 

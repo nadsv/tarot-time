@@ -20,3 +20,11 @@ export const wordDeclination = (num: number): string => {
   if (num >= 5 && num <=20 || num >= 25 && num <=30 || num >= 35 && num <=40 || num >= 45 && num <=50 || num >= 55 && num <=60 || num >= 65 && num <=70) return 'карт';
   return 'карты';
 }
+
+export const preloadImage = (num: number, imageCollection: string): void => {
+  const preloadLink = document.createElement("link");
+  preloadLink.href = `./src/assets/${imageCollection}/${num}.png)`;
+  preloadLink.rel = "preload";
+  preloadLink.as = "image";
+  document.head.appendChild(preloadLink);
+}

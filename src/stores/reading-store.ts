@@ -7,10 +7,11 @@ export const useReadingStore = defineStore('readings', {
     cardsInReading: [],
     openedCards: [],
     currentNumberOfCards: config.TOTAL_NUMBER_OF_CARDS,
+    collection: 'cards-rider-waite',
     reading: {
           id: 0,
           title: "Да или Нет?",
-          number: 4,
+          number: 2,
           disabled: false,
           owner: 0,
           link: "readings/"
