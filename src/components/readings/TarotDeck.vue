@@ -19,7 +19,8 @@ import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
 const store = useReadingStore();
-const { currentCardArray, cardsInReading, reading, collection } = storeToRefs(store);
+const { currentCardArray, cardsInReading, reading, collection } =
+  storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const card = ref<HTMLInputElement>();
@@ -34,11 +35,11 @@ const chooseCard = () => {
   const numberOfCards = reading.value.number - cardsInReading.value.length;
   if (numberOfCards) {
     const num = randomCard(currentCardArray.value.length);
-    currentCardArray.value = removeCard(num, currentCardArray.value); 
+    currentCardArray.value = removeCard(num, currentCardArray.value);
     cardsInReading.value.push(num);
     preloadImage(Math.abs(num), collection.value);
   }
-}
+};
 
 onMounted(() => {
   card.value = cardArray.value[config.TOTAL_NUMBER_OF_CARDS - 1];

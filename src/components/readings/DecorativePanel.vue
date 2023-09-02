@@ -14,17 +14,17 @@
       <slot></slot>
     </main>
     <div class="action-panel">
-        <slot name="actionPanel"></slot>
+      <slot name="actionPanel"></slot>
     </div>
     <footer class="text-accent" v-if="slots.footer">
-      <slot  name="footer"></slot>
+      <slot name="footer"></slot>
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useSlots } from 'vue'
-const slots = useSlots()
+import { useSlots } from 'vue';
+const slots = useSlots();
 
 interface Props {
   panelColor?: string;
@@ -41,7 +41,6 @@ withDefaults(defineProps<Props>(), {
   align-items: center;
   justify-content: center;
   flex-basis: 599px;
-  height: calc(100vh - 130px);
   min-height: calc(var(--card-height) * 3 + 100px);
   border-image-slice: 27 27 27 27;
   border-image-width: 15px 15px 15px 15px;

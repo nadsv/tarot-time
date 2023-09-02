@@ -11,7 +11,7 @@
         class="card__face card__face--front text-accent"
         :style="cardFaceStyle(num)"
       >
-      <div class="counter" ref="counter">{{index+1}}</div>
+        <div class="counter" ref="counter">{{ index + 1 }}</div>
       </div>
       <div class="card__face card__face--back"></div>
     </div>
@@ -19,18 +19,22 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref } from 'vue';
+import { ref } from 'vue';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
 const store = useReadingStore();
-const { cardsInReading, openedCards,reading } = storeToRefs(store);
+const { cardsInReading, openedCards, reading } = storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const counter = ref<HTMLInputElement[]>([]);
 
 const flipCard = (key: number, num: number) => {
-  if (openedCards.value.includes(num) || reading.value.number !== cardsInReading.value.length) return;
+  if (
+    openedCards.value.includes(num) ||
+    reading.value.number !== cardsInReading.value.length
+  )
+    return;
   cardArray.value[key].classList.toggle('is-flipped');
   if (num < 0) {
     counter.value[key].classList.toggle('is-reversed');
@@ -38,24 +42,27 @@ const flipCard = (key: number, num: number) => {
   openedCards.value.push(num);
 };
 
-const cardFaceStyle = (num: number): { 'background-image': string, transform?: string } => {
+const cardFaceStyle = (
+  num: number
+): { 'background-image': string; transform?: string } => {
   let style = {
-    'background-image': 'url(./src/assets/cards-rider–waite/' + Math.abs(num) + '.png)',
+    'background-image':
+      'url(./src/assets/cards-rider–waite/' + Math.abs(num) + '.png)',
   };
   if (num < 0) {
     return {
       ...style,
-      transform: 'scaleY(-1)'
-    }
+      transform: 'scaleY(-1)',
+    };
   }
   return {
-    'background-image': 'url(./src/assets/cards-rider–waite/' + Math.abs(num) + '.png)',
+    'background-image':
+      'url(./src/assets/cards-rider–waite/' + Math.abs(num) + '.png)',
   };
 };
 </script>
 
 <style scoped>
-
 .card {
   position: relative;
   width: calc(var(--card-height) * 0.59);
