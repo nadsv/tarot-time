@@ -3,7 +3,11 @@
     <div
       v-for="(num, index) in currentCardArray"
       :key="num"
-      :class="{ card: true, 'card--stacked': props.stacked }"
+      :class="{
+        card: true,
+        'card--stacked': props.stacked,
+        enabled: choosingCardsIsEnabled,
+      }"
       :style="deckStyle(index)"
       ref="cardArray"
       @dblclick="chooseCard(num)"
@@ -19,8 +23,13 @@ import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
 const store = useReadingStore();
-const { currentCardArray, cardsInReading, reading, collection } =
-  storeToRefs(store);
+const {
+  currentCardArray,
+  cardsInReading,
+  reading,
+  collection,
+  choosingCardsIsEnabled,
+} = storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const card = ref<HTMLInputElement>();
@@ -114,7 +123,7 @@ const deckStyle = (
   left: calc(50% - var(--card-height) * 0.65 / 2);
 }
 
-.card:hover {
+.card.enabled:hover {
   clip-path: unset !important;
   box-shadow: 0px 0px 5px 5px #f5d254;
   filter: brightness(150%);
