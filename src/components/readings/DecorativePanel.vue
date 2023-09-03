@@ -13,9 +13,13 @@
     <main>
       <slot></slot>
     </main>
-    <div class="action-panel">
-      <slot name="actionPanel"></slot>
+
+    <div class="action-panel" v-if="slots.actionPanel">
+      <Transition name="fade" appear>
+        <slot name="actionPanel"></slot>
+      </Transition>
     </div>
+
     <footer class="text-accent" v-if="slots.footer">
       <slot name="footer"></slot>
     </footer>
@@ -82,7 +86,14 @@ footer {
   text-align: center;
 }
 
-.fadeIn {
-  transition-duration: 1s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+  transition-delay: 0.5s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

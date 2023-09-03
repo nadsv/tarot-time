@@ -69,7 +69,6 @@ let elToScroll: HTMLElement | null;
 
 onMounted(() => {
   elToScroll = document.querySelector('#scrollToEl');
-  console.log(elToScroll);
 });
 
 watch(
