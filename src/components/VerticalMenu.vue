@@ -3,7 +3,7 @@
     <q-drawer
       v-model="leftDrawerOpen"
       bordered
-      :width="270"
+      :width="280"
       style="
         background-image: url(./src/assets/bg-menu.jpg);
         background-repeat: repeat;
@@ -14,7 +14,7 @@
           v-for="link in readings"
           :key="link.title"
           v-bind="link"
-          class="text-accent menu-reading"
+          class="menu-reading"
         />
       </q-list>
       <q-separator spaced />
@@ -23,7 +23,7 @@
           v-for="link in links"
           :key="link.title"
           v-bind="link"
-          class="text-accent menu-link"
+          class="menu-link"
         />
       </q-list>
     </q-drawer>
@@ -77,7 +77,7 @@ watch(
 
 .menu-reading {
   font-family: 'vinqueregular';
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .menu-link {
