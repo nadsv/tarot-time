@@ -10,15 +10,16 @@
       <EssentialLink
         v-for="link in readings"
         :key="link.title"
-        v-bind="link"
         class="text-accent menu-reading"
+        :link="link"
+        :type="'horizontal'"
       />
       <q-space />
       <EssentialLink
         v-for="link in links"
         :key="link.title"
-        v-bind="link"
         class="text-accent menu-link"
+        :link="link"
       />
     </nav>
   </div>

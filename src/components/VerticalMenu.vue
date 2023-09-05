@@ -13,8 +13,9 @@
         <EssentialLink
           v-for="link in readings"
           :key="link.title"
-          v-bind="link"
           class="menu-reading"
+          :type="'vertical'"
+          :link="link"
         />
       </q-list>
       <q-separator spaced />
@@ -22,8 +23,8 @@
         <EssentialLink
           v-for="link in links"
           :key="link.title"
-          v-bind="link"
           class="menu-link"
+          :link="link"
         />
       </q-list>
     </q-drawer>

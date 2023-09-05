@@ -1,30 +1,30 @@
 <template>
-  <q-item v-if="!subReadings" clickable tag="a" target="_blank" :href="link" >
+  <q-item v-if="!link.subReadings" clickable tag="a" target="_blank" :href="link.link" >
     <q-item-section>
-      <q-item-label class="text-accent">{{ title }}</q-item-label>
+      <q-item-label class="text-accent">{{ link.title }}</q-item-label>
     </q-item-section>
   </q-item>
-  <q-expansion-item
-        v-else
-        :label="title"
-        header-class="text-accent"
+  <sub-menu-vertical
+        v-else-if="type === 'vertical'"
+        :link="link"
       >
-      <q-list>
-        <q-item v-for="subLink in subReadings" :key="subLink.id" clickable tag="a" target="_blank" :href="subLink.link" class="menu-sub-reading">
-          <q-item-section>
-            <q-item-label class="text-accent">{{ subLink.title }}</q-item-label>
-          </q-item-section>
-      </q-item>
-      </q-list> 
-  </q-expansion-item>
+  </sub-menu-vertical>
+  <sub-menu-horizontal
+        v-else-if="type === 'horizontal'"
+        :link="link"
+      >
+  </sub-menu-horizontal>
 </template>
 
 <script setup lang="ts">
 import { Link, Reading } from 'src/config/models';
+import  subMenuVertical from 'components/SubMenuVertical.vue';
+import  subMenuHorizontal from 'components/SubMenuHorizontal.vue';
 
-withDefaults(defineProps<Link | Reading>(), {
-  link: '#'
-});
+defineProps<{
+  link: Reading | Link;
+  type?: string;
+}>();
 </script>
 
 <style scoped>
