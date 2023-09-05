@@ -1,5 +1,5 @@
 <template>
-  <q-item v-if="!link.subReadings" clickable tag="a" target="_blank" :href="link.link" >
+  <q-item v-if="!link.subReadings" clickable tag="a"  :to="link.link" >
     <q-item-section>
       <q-item-label class="text-accent">{{ link.title }}</q-item-label>
     </q-item-section>

@@ -4,7 +4,7 @@
         header-class="text-accent"
       >
       <q-list>
-        <q-item v-for="subLink in link.subReadings" :key="subLink.id" clickable tag="a" target="_blank" :href="subLink.link" class="menu-sub-reading">
+        <q-item v-for="subLink in link.subReadings" :key="subLink.id" clickable tag="a" :to="subLink.link" class="menu-sub-reading">
           <q-item-section>
             <q-item-label class="text-accent">{{ subLink.title }}</q-item-label>
           </q-item-section>

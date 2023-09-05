@@ -5,7 +5,7 @@
         background-repeat: repeat;
       ">
           <q-list style="min-width: 100px">
-             <q-item v-for="subLink in link.subReadings" :key="subLink.id" clickable tag="a" target="_blank" :href="subLink.link" class="menu-sub-reading">
+             <q-item v-for="subLink in link.subReadings" :key="subLink.id" clickable tag="a" :to="subLink.link" class="menu-sub-reading">
               <q-item-section>
                 <q-item-label class="text-accent">{{ subLink.title }}</q-item-label>
               </q-item-section>
