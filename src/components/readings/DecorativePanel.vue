@@ -10,15 +10,18 @@
         <slot name="header"></slot>
       </h2>
     </header>
-    <main>
+    <div class="containter">
+  <div class="main">
       <slot></slot>
-    </main>
+    </div>
 
     <div class="action-panel" v-if="slots.actionPanel">
-      <Transition name="fade" appear>
+      <Transition name="fade">
         <slot name="actionPanel"></slot>
       </Transition>
     </div>
+    </div>
+  
 
     <footer class="text-accent" v-if="slots.footer">
       <slot name="footer"></slot>
@@ -43,7 +46,7 @@ withDefaults(defineProps<Props>(), {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-basis: 599px;
   min-height: calc(var(--card-height) * 3 + 100px);
   border-image-slice: 27 27 27 27;
@@ -56,9 +59,22 @@ withDefaults(defineProps<Props>(), {
 }
 
 header {
-  margin-bottom: auto;
+  align-self: flex-start;
   background-color: #b67729;
-  padding: 0 5px 3px 5px;
+  padding: 5px 7px 5px 7px;
+  border-radius: 3px;
+  margin: 13px auto 0 auto;
+}
+
+.containter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.main {
+ margin-top: 70px;
 }
 
 .panel-name {
