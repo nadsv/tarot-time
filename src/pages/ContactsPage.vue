@@ -3,7 +3,7 @@
     <decorative-panel panel-color="rgba(127,58,173, 0.8)">
       <template v-slot:header> Контакты </template>
       <div class="container text-white">
-        <p>
+        <p class="text-center">
            Связаться с авторами проекта можно 
             по адресу электронной почты <a class="email-link" href="mailto:tarotmoment@yandex.ru?subject=Mail from Tarot Moment site">tarotmoment@yandex.ru</a>
         </p>
@@ -13,7 +13,7 @@
             img-class="my-custom-image"
             class="rounded-borders"
           >
-          <div class="absolute-bottom text-subtitle1 text-center">
+          <div class="absolute-bottom text-subtitle1 text-center font-family">
               Карты Таро не предсказывают будущее, они его создают
           </div>
         </q-img>      
@@ -44,14 +44,17 @@ import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
 .email-link {
   display: inline-block;
   color: white;
-  text-decoration: underline #b67729;
-  text-decoration-thickness: 2px;
+  text-decoration: none;
   font-size: 24px;
 }
 
 .email-link:hover {
   text-decoration: underline overline #b67729;
   text-decoration-thickness: 3px;
+}
+
+.font-family {
+  font-family: 'vinqueregular';
 }
 
 </style>

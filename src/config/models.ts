@@ -11,6 +11,6 @@ export interface Reading {
     disabled: boolean;
     owner: number;
     link: string;
-    subReadings?: {id: number; title: string; number: number; disabled: boolean; link: string}[];
+    subReadings?: {id: number; title: string; number: number; disabled: boolean; link: string; cardsNames: string[];}[];
   }
   

@@ -11,7 +11,7 @@
         class="card__face card__face--front text-accent"
         :style="cardFaceStyle(num)"
       >
-        <div class="counter" ref="counter">{{ index + 1 }}</div>
+        <div v-if="cardName(index)" class="counter" ref="counter">{{ cardName(index) }}</div>
       </div>
       <div class="card__face card__face--back"></div>
     </div>
@@ -36,11 +36,16 @@ const flipCard = (key: number, num: number) => {
   )
     return;
   cardArray.value[key].classList.toggle('is-flipped');
-  if (num < 0) {
+  if (num < 0 && reading.value.cardNames) {
     counter.value[key].classList.toggle('is-reversed');
   }
   openedCards.value.push(num);
 };
+
+const cardName = (num: number): string => {
+  if (!reading.value.cardNames) return '';
+  return reading.value.cardNames[num];
+}
 
 const cardFaceStyle = (
   num: number
@@ -52,7 +57,7 @@ const cardFaceStyle = (
   if (num < 0) {
     return {
       ...style,
-      transform: 'scaleY(-1)',
+      transform: 'scale(-1)',
     };
   }
   return {
@@ -77,11 +82,8 @@ const cardFaceStyle = (
   z-index: 78;
   display: block;
   background-color: rgba(0, 0, 0, 01);
-  width: 20px;
-  height: 15px;
   border-radius: 10px;
   position: relative;
-  left: calc(50% - 10px);
   top: -20px;
   text-align: center;
   font-size: 10px;
@@ -93,10 +95,10 @@ const cardFaceStyle = (
 }
 
 .is-flipped {
-  transform: translateX(-100%) rotateY(-180deg);
+  transform: translateX(-100%)  rotateY(-180deg);
 }
 .is-reversed {
-  transform: scaleY(-1);
+  transform:  scale(-1) ;
 }
 
 .card__face {

@@ -64,6 +64,7 @@ header {
   padding: 5px 7px 5px 7px;
   border-radius: 3px;
   margin: 13px auto 0 auto;
+  text-align: center;
 }
 
 .containter {

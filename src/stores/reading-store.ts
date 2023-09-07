@@ -10,11 +10,12 @@ export const useReadingStore = defineStore('readings', {
     collection: 'cards-rider-waite',
     reading: {
       id: 0,
-      title: 'Да или Нет?',
-      number: 2,
+      title: 'Прошлое, настоящее, будущее',
+      number: 3,
       disabled: false,
       owner: 0,
       link: 'readings/',
+      cardNames: ['Прошлое', 'Настоящее', 'Будущее']
     },
   }),
 
