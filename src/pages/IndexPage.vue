@@ -113,7 +113,7 @@ const hintForCardReading = computed(() => {
 
 <style scoped>
 .bckgrnd {
-  background-image: url(./src/assets/bg-main.jpg);
+  background-image: url(assets/bg-main.jpg);
   background-size: cover;
 }
 </style>

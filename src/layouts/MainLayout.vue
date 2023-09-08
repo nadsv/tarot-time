@@ -13,7 +13,7 @@
         />
 
         <q-avatar square>
-          <img src="~assets/tarot-time-logo.png" />
+          <img src="./src/assets/tarot-time-logo.png" />
         </q-avatar>
 
         <q-toolbar-title class="title"> Время Таро </q-toolbar-title>

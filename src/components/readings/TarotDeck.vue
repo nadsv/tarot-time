@@ -105,7 +105,7 @@ const deckStyle = (
   height: var(--card-height);
   background-color: blueviolet;
   border: 1px solid rgb(0, 0, 0);
-  background-image: url(./src/assets/bg-back.jpg);
+  background-image: url(assets/bg-back.jpg);
   background-size: cover;
   background-position: 50% 50%;
   border: 3px solid black;

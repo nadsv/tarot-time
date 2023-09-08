@@ -53,7 +53,7 @@ withDefaults(defineProps<Props>(), {
   border-image-width: 15px 15px 15px 15px;
   border-image-outset: 8px 8px 8px 8px;
   border-image-repeat: stretch stretch;
-  border-image-source: url(./src/assets/bi-panel-2.png);
+  border-image-source: url(/assets/bi-panel-2.png);
   border-style: solid;
   margin: 15px;
 }

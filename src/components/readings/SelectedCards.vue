@@ -52,7 +52,7 @@ const cardFaceStyle = (
 ): { 'background-image': string; transform?: string } => {
   let style = {
     'background-image':
-      'url(./src/assets/cards-rider–waite/' + Math.abs(num) + '.png)',
+      'url(../assets/cards-rider–waite/' + Math.abs(num) + '.png)',
   };
   if (num < 0) {
     return {
@@ -62,7 +62,7 @@ const cardFaceStyle = (
   }
   return {
     'background-image':
-      'url(./src/assets/cards-rider–waite/' + Math.abs(num) + '.png)',
+      'url(../assets/cards-rider–waite/' + Math.abs(num) + '.png)',
   };
 };
 </script>
@@ -98,7 +98,7 @@ const cardFaceStyle = (
   transform: translateX(-100%)  rotateY(-180deg);
 }
 .is-reversed {
-  transform:  scale(-1) ;
+  transform:  scale(-1);
 }
 
 .card__face {
@@ -117,12 +117,12 @@ const cardFaceStyle = (
 .card__face--front {
   z-index: 1;
   transition: transform 0.5s;
-  background-image: url(./src/assets/cards-rider–waite/2.png);
+  background-image: url(assets/cards-rider–waite/2.png);
 }
 
 .card__face--back {
   border: 1px solid rgb(0, 0, 0);
-  background-image: url(./src/assets/bg-back.jpg);
+  background-image: url(assets/bg-back.jpg);
   background-size: cover;
   background-position: 50% 50%;
   border: 3px solid black;

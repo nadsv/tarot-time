@@ -8,7 +8,7 @@
             по адресу электронной почты <a class="email-link" href="mailto:tarotmoment@yandex.ru?subject=Mail from Tarot Moment site">tarotmoment@yandex.ru</a>
         </p>
         <q-img
-            src="~assets/contacts.jpg"
+            src="assets/contacts.jpg"
             spinner-color="white"
             img-class="my-custom-image"
             class="rounded-borders"

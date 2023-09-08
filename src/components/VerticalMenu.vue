@@ -5,7 +5,7 @@
       bordered
       :width="280"
       style="
-        background-image: url(./src/assets/bg-menu.jpg);
+        background-image: url(../assets/bg-menu.jpg);
         background-repeat: repeat;
       "
     >
