@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row justify-evenly bckgrnd">
+  <q-page class="row justify-evenly">
     <decorative-panel panel-color="rgba(127,58,173, 0.8)">
       <template v-slot:header> Контакты </template>
       <div class="container text-white">
@@ -30,11 +30,6 @@ import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
 </script>
 
 <style scoped>
-.bckgrnd {
-  background-image: url(./src/assets/bg-main.jpg);
-  background-size: cover;
-}
-
 .container {
   margin-left: 20px;
   margin-right: 20px;

@@ -3,7 +3,7 @@
     <q-separator></q-separator>
     <nav
       style="
-        background-image: url(./src/assets/bg-menu.jpg);
+        background-image: url(/assets/bg-menu.jpg);
         background-repeat: repeat;
       "
     >

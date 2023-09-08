@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="bckgrnd">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -13,7 +13,7 @@
         />
 
         <q-avatar square>
-          <img src="./src/assets/tarot-time-logo.png" />
+          <img src="~assets/tarot-time-logo.png" />
         </q-avatar>
 
         <q-toolbar-title class="title"> Время Таро </q-toolbar-title>
@@ -63,5 +63,10 @@ function toggleLeftDrawer() {
 .title {
   font-family: 'vinqueregular';
   font-size: 30px;
+}
+
+.bckgrnd {
+  background-image: url(/assets/bg-main.jpg);
+  background-size: cover;
 }
 </style>

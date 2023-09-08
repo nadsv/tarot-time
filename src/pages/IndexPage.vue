@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row items-strech justify-evenly bckgrnd">
+  <q-page class="row items-strech justify-evenly">
     <decorative-panel :panel-color="panelColors[0]">
       <template v-slot:header> {{ reading.title }} </template>
       <tarot-deck :stacked="stacked"></tarot-deck>
@@ -36,6 +36,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue';
+import { useRoute } from 'vue-router'
 import TarotDeck from 'src/components/readings/TarotDeck.vue';
 import SelectedCards from 'src/components/readings/SelectedCards.vue';
 import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
@@ -43,6 +44,7 @@ import { useQuasar, scroll } from 'quasar';
 import { wordDeclination } from 'src/components/readings/helpers';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
+import { config } from 'src/config/';
 
 const $q = useQuasar();
 $q.dark.set(true);
@@ -64,6 +66,23 @@ const scrollToElement = (el: HTMLElement) => {
   const duration = 1000;
   setTimeout(() => setVerticalScrollPosition(target, offset, duration), 1000);
 };
+
+const route = useRoute();
+
+watch(
+      () => route.params,
+      (params) => {
+        const id = +(params.reading);
+        const subId= +(params.subreading);
+       /* if (subId) {
+           const owner = config.READINGS[id]
+           store.reading = owner.subReadings[subId];
+        }*/
+        if (id) {
+           store.reading = config.READINGS[id]
+        }
+      }
+)
 
 let elToScroll: HTMLElement | null;
 
@@ -111,9 +130,3 @@ const hintForCardReading = computed(() => {
 });
 </script>
 
-<style scoped>
-.bckgrnd {
-  background-image: url(assets/bg-main.jpg);
-  background-size: cover;
-}
-</style>

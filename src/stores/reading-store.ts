@@ -8,15 +8,7 @@ export const useReadingStore = defineStore('readings', {
     openedCards: [],
     currentNumberOfCards: config.TOTAL_NUMBER_OF_CARDS,
     collection: 'cards-rider-waite',
-    reading: {
-      id: 0,
-      title: 'Прошлое, настоящее, будущее',
-      number: 3,
-      disabled: false,
-      owner: 0,
-      link: 'readings/',
-      cardNames: ['Прошлое', 'Настоящее', 'Будущее']
-    },
+    reading: config.READINGS[0]
   }),
 
   getters: {

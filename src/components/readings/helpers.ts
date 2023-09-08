@@ -22,9 +22,9 @@ export const wordDeclination = (num: number): string => {
 }
 
 export const preloadImage = (num: number, imageCollection: string): void => {
-  const preloadLink = document.createElement("link");
-  preloadLink.href = `./src/assets/${imageCollection}/${num}.png)`;
-  preloadLink.rel = "preload";
-  preloadLink.as = "image";
+  const preloadLink = document.createElement('link');
+  preloadLink.href = `/assets/${imageCollection}/${num}.png)`;
+  preloadLink.rel = 'preload';
+  preloadLink.as = 'image';
   document.head.appendChild(preloadLink);
 }

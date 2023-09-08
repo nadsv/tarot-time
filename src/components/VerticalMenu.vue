@@ -4,10 +4,11 @@
       v-model="leftDrawerOpen"
       bordered
       :width="280"
-      style="
-        background-image: url(../assets/bg-menu.jpg);
-        background-repeat: repeat;
-      "
+      class="drawer"
+      :style="{
+        'background-image': 'url(/assets/bg-menu.jpg)',
+        'background-repeat': 'repeat' 
+      }"
     >
       <q-list>
         <EssentialLink
@@ -85,4 +86,9 @@ watch(
   font-family: 'vinqueregular';
   font-size: 18px;
 }
+
+.drawer {
+  background-image: url(assets/bg-menu.jpg);
+  background-repeat: repeat;
+} 
 </style>

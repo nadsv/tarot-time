@@ -1,8 +1,9 @@
 <template>
    <q-btn flat no-caps class="text-accent" :label="link.title"  padding="0px 15px">
-        <q-menu  style="
-        background-image: url(./src/assets/bg-menu.jpg);
-        background-repeat: repeat;
+        <q-menu auto-close :style="{
+          'background-image': 'url(/assets/bg-menu.jpg)',
+          'background-repeat': 'repeat'
+        }  
       ">
           <q-list style="min-width: 100px">
              <q-item v-for="subLink in link.subReadings" :key="subLink.id" clickable tag="a" :to="subLink.link" class="menu-sub-reading">
