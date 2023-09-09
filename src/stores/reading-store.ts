@@ -8,7 +8,7 @@ export const useReadingStore = defineStore('readings', {
     openedCards: [],
     currentNumberOfCards: config.TOTAL_NUMBER_OF_CARDS,
     collection: 'cards-rider-waite',
-    reading: config.READINGS[0]
+    reading: config.READINGS[0],
   }),
 
   getters: {
@@ -20,6 +20,11 @@ export const useReadingStore = defineStore('readings', {
   actions: {
     increment() {
       this.currentNumberOfCards++;
+    },
+    resetState() {
+      this.currentCardArray = config.INITIAL_ARRAY_OF_CARDS;
+      this.cardsInReading = [];
+      this.openedCards = [];
     },
   },
 });
