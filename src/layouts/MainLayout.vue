@@ -89,7 +89,7 @@ function toggleLeftDrawer() {
 }
 
 .bckgrnd {
-  background-image: url(/assets/bg-main.jpg);
-  background-size: cover;
+  background-image: url(/assets/bg-page.jpg);
+  background-repeat: repeat;
 }
 </style>
