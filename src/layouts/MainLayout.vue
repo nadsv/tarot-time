@@ -19,7 +19,10 @@
         <q-toolbar-title class="title"> Время Таро </q-toolbar-title>
       </q-toolbar>
 
-      <horizontal-menu :readings="config.READINGS" :links="config.LINKS"></horizontal-menu>
+      <horizontal-menu
+        :readings="config.READINGS"
+        :links="config.LINKS"
+      ></horizontal-menu>
     </q-header>
 
     <vertical-menu
@@ -36,11 +39,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, watch } from 'vue';
 import HorizontalMenu from 'src/components/HorizontalMenu.vue';
 import VerticalMenu from 'src/components/VerticalMenu.vue';
 import { config } from 'src/config/';
+import { useRoute } from 'vue-router';
+import { useReadingStore } from 'src/stores/reading-store';
 
+const route = useRoute();
+let store = useReadingStore();
+
+watch(
+  () => route.params,
+  (params) => {
+    const id = params.reading;
+    const subId = params.subreading;
+    if (subId) {
+      const owner = config.READINGS[+id];
+      store.reading = owner.subReadings[+subId];
+      return;
+    }
+    if (id) {
+      store.reading = config.READINGS[+id];
+    }
+  }
+);
 
 const leftDrawerOpen = ref(false);
 
