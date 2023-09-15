@@ -57,10 +57,12 @@ watch(
     if (subId) {
       const owner = config.READINGS[+id];
       store.reading = owner.subReadings[+subId];
+      store.resetState();
       return;
     }
     if (id) {
       store.reading = config.READINGS[+id];
+      store.resetState();
     }
   }
 );

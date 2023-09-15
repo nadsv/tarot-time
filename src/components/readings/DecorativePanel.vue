@@ -5,7 +5,7 @@
       'background-color': panelColor,
     }"
   >
-    <header>
+    <header v-if="slots.header">
       <h2 class="panel-name">
         <slot name="header"></slot>
       </h2>
