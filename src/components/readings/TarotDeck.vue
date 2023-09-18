@@ -95,6 +95,7 @@ const deckStyle = (
   position: relative;
   width: calc(var(--card-height) * 2);
   height: calc(var(--card-height) * 2);
+  margin: 0 auto;
 }
 
 .card {

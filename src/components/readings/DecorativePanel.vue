@@ -10,7 +10,7 @@
         <slot name="header"></slot>
       </h2>
     </header>
-    <div class="containter">
+    <div class="wrapper">
   <div class="main">
       <slot></slot>
     </div>
@@ -63,19 +63,20 @@ header {
   background-color: #b67729;
   padding: 5px 7px 5px 7px;
   border-radius: 3px;
-  margin: 13px auto 0 auto;
+  margin: 13px auto 70px auto;
   text-align: center;
 }
 
-.containter {
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
+  width: 100%;
 }
 
 .main {
- margin-top: 70px;
+ width: 100%;
 }
 
 .panel-name {

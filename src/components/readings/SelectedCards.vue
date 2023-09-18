@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-gutter-md">
+  <div class="row q-gutter-md justify-center">
     <div
       v-for="(num, index) in cardsInReading"
       :key="num"
