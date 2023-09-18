@@ -1,3 +1,13 @@
+import { Notify } from "quasar";
+
+export const showError = (text:string, error:string) => {
+  Notify.create({
+    message: `${text}: ${error}`,
+    color: "negative",
+    timeout: 2000,
+  });
+};
+
 export const shapeData = (
   num: number,
   cardsNumber: number
@@ -28,3 +38,4 @@ export const preloadImage = (num: number, imageCollection: string): void => {
   preloadLink.as = 'image';
   document.head.appendChild(preloadLink);
 }
+

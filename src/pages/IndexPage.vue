@@ -23,7 +23,7 @@
           color="dark"
           text-color="accent"
           label="Толковать"
-          @click="shuffleCards"
+          @click="getAnswers"
         />
       </template>
       <template v-slot:footer>{{ hintForCardReading }}</template>
@@ -109,4 +109,9 @@ const hintForCardReading = computed(() => {
     ? 'Переверните карты'
     : 'Карты раскрыты';
 });
+
+const getAnswers = () => {
+  console.log('Толкование')
+  store.getAnswers('0');
+}
 </script>
