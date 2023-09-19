@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import { config } from 'src/config';
-import { api } from "boot/axios";
-import { showError } from "components/readings/helpers";
+import { api } from 'boot/axios';
 
 export const useReadingStore = defineStore('readings', {
   state: () => ({
@@ -11,7 +10,9 @@ export const useReadingStore = defineStore('readings', {
     currentNumberOfCards: config.TOTAL_NUMBER_OF_CARDS,
     collection: 'cards-rider-waite',
     reading: config.READINGS[0],
-    answers: []
+    answers: [],
+    answerStatus: false,
+    errorStatus: false
   }),
 
   getters: {
@@ -29,15 +30,20 @@ export const useReadingStore = defineStore('readings', {
       this.cardsInReading = [];
       this.openedCards = [];
       this.answers =[];
+      this.answerStatus = false;
+      this.errorStatus = false;
     },
 
-    async getAnswers(payload: string) {
+    async getAnswers(payload: {id: number; position: number}) {
       try {
-        const response = await api.get("/api/card/0?p=0");
-       // this.answers = [...this.answers, response.data];
-       // console.log('answers', this.answers);
+        if (this.errorStatus) return;
+        const response = await api.get(`/card/${payload.id}?p=${payload.position}`);
+        if (response.data.message) throw new Error(response.data.message);
+        this.answers = [...this.answers, response.data];
+        this.answerStatus = (this.answers.length === this.reading.number);
       } catch (error) {
-        console.log('Ошибка', error)
+        this.errorStatus = true;
+        console.log('Ошибка получения ответа', error)
       }
     },
   },

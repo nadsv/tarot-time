@@ -1,13 +1,3 @@
-import { Notify } from "quasar";
-
-export const showError = (text:string, error:string) => {
-  Notify.create({
-    message: `${text}: ${error}`,
-    color: "negative",
-    timeout: 2000,
-  });
-};
-
 export const shapeData = (
   num: number,
   cardsNumber: number
@@ -31,11 +21,16 @@ export const wordDeclination = (num: number): string => {
   return 'карты';
 }
 
-export const preloadImage = (num: number, imageCollection: string): void => {
+/*export const preloadImage = (num: number, imageCollection: string): void => {
   const preloadLink = document.createElement('link');
   preloadLink.href = `/assets/${imageCollection}/${num}.png)`;
   preloadLink.rel = 'preload';
   preloadLink.as = 'image';
   document.head.appendChild(preloadLink);
+}*/
+
+export const preloadImage = (num: number, imageCollection: string): void => {
+  const img = new Image();
+  img.src = `/assets/${imageCollection}/${num}.png)`;
 }
 

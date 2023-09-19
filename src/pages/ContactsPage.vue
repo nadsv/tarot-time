@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
+import DecorativePanel from 'src/components/DecorativePanel.vue';
 import { ref } from 'vue';
 
 const panelColors = ref([

@@ -29,7 +29,17 @@
       <template v-slot:footer>{{ hintForCardReading }}</template>
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[2]"
-      ><template v-slot:header>Толкование</template>It is a rainbow!
+      ><template v-slot:header>Толкование</template>
+      <tarot-answer-1></tarot-answer-1>
+      <template v-slot:actionPanel>
+        <q-btn
+          v-if="!(reading.number - openedCards.length)"
+          color="dark"
+          text-color="accent"
+          label="Начать новый расклад"
+          @click="startNewReadning"
+        />
+      </template>
     </decorative-panel>
   </q-page>
 </template>
@@ -38,9 +48,10 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import TarotDeck from 'src/components/readings/TarotDeck.vue';
 import SelectedCards from 'src/components/readings/SelectedCards.vue';
-import DecorativePanel from 'src/components/readings/DecorativePanel.vue';
+import TarotAnswer1 from 'src/components/readings/TarotAnswer1.vue';
+import DecorativePanel from 'src/components/DecorativePanel.vue';
 import { useQuasar, scroll } from 'quasar';
-import { wordDeclination } from 'src/components/readings/helpers';
+import { wordDeclination } from 'src/utils/helpers';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
@@ -83,9 +94,6 @@ watch(
   }
 );
 
-const el = document.querySelector(':root');
-const c = getComputedStyle(el);
-
 const stacked = ref(false);
 
 const shuffleCards = () => {
@@ -111,7 +119,10 @@ const hintForCardReading = computed(() => {
 });
 
 const getAnswers = () => {
-  console.log('Толкование')
-  store.getAnswers('0');
+  console.log('Толкование', store.answers)
+}
+
+const startNewReadning =() => {
+  store.resetState();
 }
 </script>

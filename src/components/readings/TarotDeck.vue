@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue';
-import { shapeData, removeCard, randomCard, preloadImage } from './helpers';
+import { shapeData, removeCard, randomCard, preloadImage } from '../../utils/helpers';
 import { config } from 'src/config/';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';

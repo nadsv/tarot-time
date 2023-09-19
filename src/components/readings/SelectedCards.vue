@@ -40,6 +40,7 @@ const flipCard = (key: number, num: number) => {
     counter.value[key].classList.toggle('is-reversed');
   }
   openedCards.value.push(num);
+  store.getAnswers({id: Math.abs(num), position: num > 0 ? 0 : 1});
 };
 
 const cardName = (num: number): string => {
