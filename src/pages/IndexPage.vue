@@ -30,8 +30,8 @@
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[2]"
       ><template v-slot:header>Толкование</template>
-      <tarot-answer-1></tarot-answer-1>
-      <template v-slot:actionPanel>
+      <tarot-answer v-if="store.answerVisibility"></tarot-answer>
+      <template v-slot:actionPanel v-if="store.answerVisibility">
         <q-btn
           v-if="!(reading.number - openedCards.length)"
           color="dark"
@@ -48,7 +48,7 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import TarotDeck from 'src/components/readings/TarotDeck.vue';
 import SelectedCards from 'src/components/readings/SelectedCards.vue';
-import TarotAnswer1 from 'src/components/readings/TarotAnswer1.vue';
+import TarotAnswer from 'src/components/readings/TarotAnswer.vue';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import { useQuasar, scroll } from 'quasar';
 import { wordDeclination } from 'src/utils/helpers';
@@ -119,7 +119,7 @@ const hintForCardReading = computed(() => {
 });
 
 const getAnswers = () => {
-  console.log('Толкование', store.answers)
+  store.showAnswer = true;
 }
 
 const startNewReadning =() => {

@@ -104,7 +104,7 @@ const panelColors = ref([
 }
 
 .contacts-text {
-  margin-top: -50px;
+  margin-top: 30px;
 }
 
 @media (min-width: 1196px) {
@@ -113,9 +113,6 @@ const panelColors = ref([
   }
   .central-image {
     display: none;
-  }
-  .contacts-text {
-    margin-top: 0;
   }
 }
 

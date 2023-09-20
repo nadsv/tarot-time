@@ -7,7 +7,7 @@ export const config = Object.freeze({
       title: 'Да или Нет?',
       number: 1,
       disabled: false,
-      owner: 0,
+      owner: null,
       link: '/readings/0/',
     },
     {
@@ -15,14 +15,14 @@ export const config = Object.freeze({
       title: 'Карта дня',
       number: 1,
       disabled: false,
-      owner: 0,
+      owner: null,
       link: '/readings/1/',
     },
     {
       id: 2,
       title: 'Линейные расклады',
       disabled: false,
-      owner: 0,
+      owner: null,
       link: '/readings/3/',
       subReadings: [
         {

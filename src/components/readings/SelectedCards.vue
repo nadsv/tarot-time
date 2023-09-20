@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-gutter-md justify-center">
+  <div class="row q-gutter-md justify-center selected-cards-wrapper">
     <div
       v-for="(num, index) in cardsInReading"
       :key="num"
@@ -40,7 +40,7 @@ const flipCard = (key: number, num: number) => {
     counter.value[key].classList.toggle('is-reversed');
   }
   openedCards.value.push(num);
-  store.getAnswers({id: Math.abs(num), position: num > 0 ? 0 : 1});
+  store.getAnswers({id: Math.abs(num), position: num > 0 ? 0 : 1, index: key});
 };
 
 const cardName = (num: number): string => {
@@ -127,5 +127,9 @@ const cardFaceStyle = (
   border: 3px solid black;
   border-radius: 10px;
   transform: rotateY(180deg);
+}
+
+.selected-cards-wrapper {
+  margin-top: 50px;
 }
 </style>

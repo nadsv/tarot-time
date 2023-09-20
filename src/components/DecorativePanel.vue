@@ -63,7 +63,7 @@ header {
   background-color: #b67729;
   padding: 5px 7px 5px 7px;
   border-radius: 3px;
-  margin: 13px auto 70px auto;
+  margin: 13px auto 20px auto;
   text-align: center;
 }
 
@@ -91,7 +91,7 @@ header {
 
 .action-panel {
   padding-top: 50px;
-  margin-bottom: auto;
+  margin-bottom: 20px;
 }
 
 footer {

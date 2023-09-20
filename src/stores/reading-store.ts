@@ -12,13 +12,20 @@ export const useReadingStore = defineStore('readings', {
     reading: config.READINGS[0],
     answers: [],
     answerStatus: false,
-    errorStatus: false
+    errorStatus: false,
+    showAnswer: false
   }),
 
   getters: {
     choosingCardsIsEnabled(state) {
       return state.reading.number > state.cardsInReading.length;
     },
+    suffixForAnswer(state) {
+      return state.reading.owner  ? state.reading.owner : state.reading.id
+    },
+    answerVisibility(state) {
+      return state.answerStatus === true && state.errorStatus === false && state.showAnswer === true;
+    } 
   },
 
   actions: {
@@ -32,14 +39,15 @@ export const useReadingStore = defineStore('readings', {
       this.answers =[];
       this.answerStatus = false;
       this.errorStatus = false;
+      this.showAnswer = false;
     },
 
-    async getAnswers(payload: {id: number; position: number}) {
+    async getAnswers(payload: {id: number; position: number; index: number}) {
       try {
         if (this.errorStatus) return;
         const response = await api.get(`/card/${payload.id}?p=${payload.position}`);
         if (response.data.message) throw new Error(response.data.message);
-        this.answers = [...this.answers, response.data];
+        this.answers[payload.index] = response.data;
         this.answerStatus = (this.answers.length === this.reading.number);
       } catch (error) {
         this.errorStatus = true;
