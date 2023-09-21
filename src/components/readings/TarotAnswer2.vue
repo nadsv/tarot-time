@@ -19,7 +19,7 @@ const position = (num: number): string=> {
 
 <style scoped>
 .answer {
-  width: 100%
+  width: 100%;
 }
 
 .card-name {

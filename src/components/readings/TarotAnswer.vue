@@ -1,6 +1,9 @@
 <template>
   <div class="row q-gutter-md justify-center">
-    <component :is="resultOfReading"/>
+    <component :is="resultOfReading" v-if="store.answerVisibility"/>
+    <div v-if="store.errorStatus" class="error text-negative">
+      Ошибка получения толкования расклада
+    </div>
   </div>
 </template>
 
@@ -24,5 +27,20 @@ const resultOfReading = computed(()=> {
 </script>
 
 <style scoped>
+.error {
+  padding: 50px 20px 20px 20px;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+  transition-delay: 0.5s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

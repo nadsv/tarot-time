@@ -10,16 +10,14 @@
         <slot name="header"></slot>
       </h2>
     </header>
+    
     <div class="wrapper">
-  <div class="main">
-      <slot></slot>
-    </div>
-
-    <div class="action-panel" v-if="slots.actionPanel">
-      <Transition name="fade">
+      <div class="main">
+        <slot></slot>
+      </div>
+      <div class="action-panel" v-if="slots.actionPanel">
         <slot name="actionPanel"></slot>
-      </Transition>
-    </div>
+      </div>
     </div>
   
 

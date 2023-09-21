@@ -30,8 +30,8 @@
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[2]"
       ><template v-slot:header>Толкование</template>
-      <tarot-answer v-if="store.answerVisibility"></tarot-answer>
-      <template v-slot:actionPanel v-if="store.answerVisibility">
+      <tarot-answer></tarot-answer>
+      <template v-slot:actionPanel v-if="store.answerVisibility || store.errorStatus">
         <q-btn
           v-if="!(reading.number - openedCards.length)"
           color="dark"

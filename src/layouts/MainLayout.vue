@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import HorizontalMenu from 'src/components/HorizontalMenu.vue';
 import VerticalMenu from 'src/components/VerticalMenu.vue';
 import { config } from 'src/config/';
@@ -49,9 +49,7 @@ import { useReadingStore } from 'src/stores/reading-store';
 const route = useRoute();
 let store = useReadingStore();
 
-watch(
-  () => route.params,
-  (params) => {
+const changeReading = (params)=>{
     const id = params.reading;
     const subId = params.subreading;
     if (subId) {
@@ -64,7 +62,18 @@ watch(
       store.reading = config.READINGS[+id];
       store.resetState();
     }
-  }
+}
+
+onMounted(()=>{
+   const params = route.params;
+   changeReading(params); 
+})
+
+watch(
+  () => route.params,
+  (params) => {
+    changeReading(params); 
+  }  
 );
 
 const leftDrawerOpen = ref(false);
