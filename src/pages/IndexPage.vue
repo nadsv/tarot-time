@@ -7,14 +7,14 @@
         <q-btn
           color="dark"
           text-color="accent"
-          label="Перемешать"
+          label="Перетасовать"
           @click="shuffleCards"
           @laid-out="(value: boolean) => {}"
         />
       </template>
-      <template v-slot:footer>{{ hintForCardDeck }}</template>
+      <template v-slot:hint>{{ hintForCardDeck }}</template>
     </decorative-panel>
-    <decorative-panel id="scrollToEl" :panel-color="panelColors[1]"
+    <decorative-panel id="scrollToSelectedCards" :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранные карты</template>
       <selected-cards></selected-cards>
       <template v-slot:actionPanel>
@@ -26,9 +26,8 @@
           @click="getAnswers"
         />
       </template>
-      <template v-slot:footer>{{ hintForCardReading }}</template>
     </decorative-panel>
-    <decorative-panel :panel-color="panelColors[2]"
+    <decorative-panel id="scrollToAnswer" :panel-color="panelColors[2]"
       ><template v-slot:header>Толкование</template>
       <tarot-answer></tarot-answer>
       <template v-slot:actionPanel v-if="store.answerVisibility || store.errorStatus">
@@ -65,7 +64,7 @@ const panelColors = ref([
 ]);
 
 const store = useReadingStore();
-const { reading, cardsInReading, openedCards } = storeToRefs(store);
+const { reading, cardsInReading, openedCards, showAnswer } = storeToRefs(store);
 
 const { getScrollTarget, setVerticalScrollPosition } = scroll;
 
@@ -73,13 +72,15 @@ const scrollToElement = (el: HTMLElement) => {
   const target = getScrollTarget(el);
   const offset = el.offsetTop - 20;
   const duration = 1000;
-  setTimeout(() => setVerticalScrollPosition(target, offset, duration), 1000);
+  setTimeout(() => setVerticalScrollPosition(target, offset, duration),1000);
 };
 
 let elToScroll: HTMLElement | null;
+let elToScroll1: HTMLElement | null;
 
 onMounted(() => {
-  elToScroll = document.querySelector('#scrollToEl');
+  elToScroll = document.querySelector('#scrollToSelectedCards');
+  elToScroll1 = document.querySelector('#scrollToAnswer');
 });
 
 watch(
@@ -94,6 +95,16 @@ watch(
   }
 );
 
+watch(
+  () => showAnswer.value,
+  () => {
+    console.log('showAnswer', showAnswer.value)
+    if ( showAnswer.value ) {
+      scrollToElement(elToScroll1);
+    }
+  }
+);
+
 const stacked = ref(false);
 
 const shuffleCards = () => {
@@ -101,21 +112,17 @@ const shuffleCards = () => {
   setTimeout(() => (stacked.value = false));
 };
 
+const showHint = computed(()=>{
+  return store.reading.number > store.reading.cardsInReading.length
+})
+
 const hintForCardDeck = computed(() => {
   const numberOfCards = reading.value.number - cardsInReading.value.length;
   return numberOfCards
     ? `Выберите ${numberOfCards} ${wordDeclination(
         numberOfCards
-      )} двойным щелчком`
+      )}`
     : 'Карты выбраны';
-});
-
-const hintForCardReading = computed(() => {
-  return reading.value.number - cardsInReading.value.length
-    ? 'Сначала выберите карты'
-    : reading.value.number - openedCards.value.length
-    ? 'Переверните карты'
-    : 'Карты раскрыты';
 });
 
 const getAnswers = () => {

@@ -10,6 +10,10 @@
         <slot name="header"></slot>
       </h2>
     </header>
+
+    <div class="hint text-accent" v-if="slots.hint">
+      <slot name="hint"></slot>
+    </div>
     
     <div class="wrapper">
       <div class="main">
@@ -20,10 +24,6 @@
       </div>
     </div>
   
-
-    <footer class="text-accent" v-if="slots.footer">
-      <slot name="footer"></slot>
-    </footer>
   </div>
 </template>
 
@@ -54,6 +54,7 @@ withDefaults(defineProps<Props>(), {
   border-image-source: url(/assets/bi-panel-2.png);
   border-style: solid;
   margin: 15px;
+  position: relative;
 }
 
 header {
@@ -83,8 +84,6 @@ header {
   font-size: 16px;
   font-weight: 900;
   line-height: 14px;
-  max-width: 270px;
-  text-wrap: balance;
 }
 
 .action-panel {
@@ -92,14 +91,17 @@ header {
   margin-bottom: 20px;
 }
 
-footer {
-  padding: 7px 10px;
-  align-self: end;
+.hint {
+  position: absolute;
+  top: 43px;
+  right: 2px;
+  width: 70px;
+  height: 70px;
+  padding: 20px 8px 0 8px;
   background-color: #8d118a;
-  margin-right: 5px;
-  margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
+  border-radius: 35px;
 }
 
 .fade-enter-active,

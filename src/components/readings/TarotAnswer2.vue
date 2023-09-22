@@ -1,8 +1,9 @@
 <template>
-  <div v-for="(cardName, index) in store.reading.cardNames" :key="cardName" class="row answer justify-center">
+    <div v-for="(cardName, index) in store.reading.cardNames" :key="cardName" class="row answer justify-center">
       <h6 class="card-name text-center text-accent">{{cardName}} - {{position(index)}} карта {{store.answers[index].name}}</h6> 
-      <p class="card-meaning">{{store.answers[index].meaning}}</p>
+      <p class="card-meaning text-justify">{{store.answers[index].meaning}}</p>
   </div>
+
 </template>
 
 <script setup lang="ts">

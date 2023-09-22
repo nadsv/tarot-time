@@ -10,7 +10,7 @@
       }"
       :style="deckStyle(index)"
       ref="cardArray"
-      @dblclick="chooseCard(num)"
+      @click="chooseCard(num)"
     ></div>
   </div>
 </template>

@@ -1,9 +1,11 @@
 <template>
-  <div class="row q-gutter-md justify-center">
-    <component :is="resultOfReading" v-if="store.answerVisibility"/>
-    <div v-if="store.errorStatus" class="error text-negative">
-      Ошибка получения толкования расклада
-    </div>
+    <div class="container">
+      <div class="row q-gutter-md justify-center">
+        <component :is="resultOfReading" v-if="store.answerVisibility"/>
+        <div v-if="store.errorStatus" class="error text-negative">
+              Ошибка получения толкования расклада
+        </div>
+     </div> 
   </div>
 </template>
 
@@ -33,14 +35,16 @@ const resultOfReading = computed(()=> {
   text-transform: uppercase;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s ease;
-  transition-delay: 0.5s;
+.container {
+  max-height: 600px;
+  overflow-y: auto;
 }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+
+@media (max-width: 1900px) {
+  .container {
+    max-height: unset;
+    overflow-y: unset;
+}
 }
 </style>
