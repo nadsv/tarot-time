@@ -35,6 +35,7 @@ const position = computed(()=> store.answers.length && store.answers[0].position
 }
 
 .card-meaning {
+  margin: 0;
   padding: 0 35px 35px 35px;
 }
 

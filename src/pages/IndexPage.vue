@@ -1,7 +1,7 @@
 <template>
   <q-page class="row items-strech justify-evenly">
-    <decorative-panel :panel-color="panelColors[0]">
-      <template v-slot:header> {{ reading.title }} </template>
+    <decorative-panel id="scrollToDeck" :panel-color="panelColors[0]">
+      <template v-slot:header><span id="readingName" class="reading-name">{{ reading.title }}</span></template>
       <tarot-deck :stacked="stacked"></tarot-deck>
       <template v-slot:actionPanel>
         <q-btn
@@ -68,19 +68,23 @@ const { reading, cardsInReading, openedCards, showAnswer } = storeToRefs(store);
 
 const { getScrollTarget, setVerticalScrollPosition } = scroll;
 
-const scrollToElement = (el: HTMLElement) => {
+const scrollToElement = (el: HTMLElement, delay: number, time: 0) => {
   const target = getScrollTarget(el);
   const offset = el.offsetTop - 20;
-  const duration = 1000;
-  setTimeout(() => setVerticalScrollPosition(target, offset, duration),1000);
+  const duration = time;
+  setTimeout(() => setVerticalScrollPosition(target, offset, duration),delay);
 };
 
+let elToScroll0: HTMLElement | null;
 let elToScroll: HTMLElement | null;
 let elToScroll1: HTMLElement | null;
+let readingNameEl: HTMLElement | null;
 
 onMounted(() => {
+  elToScroll0 = document.querySelector('#scrollToDeck');
   elToScroll = document.querySelector('#scrollToSelectedCards');
   elToScroll1 = document.querySelector('#scrollToAnswer');
+  readingNameEl = document.querySelector('#readingName');
 });
 
 watch(
@@ -90,17 +94,28 @@ watch(
       cardsInReading.value.length === reading.value.number &&
       cardsInReading.value.length
     ) {
-      scrollToElement(elToScroll);
+      scrollToElement(elToScroll, 1000, 1000);
     }
+  }
+);
+
+const headingAnimation = (el:HTMLElement, className: string) => {
+    el?.classList.add(className);
+    setTimeout(_=> el?.classList.remove(className), 1500 );
+}
+
+watch(
+  () => reading.value.title,
+  () => {
+    headingAnimation(readingNameEl, 'reading-name');
   }
 );
 
 watch(
   () => showAnswer.value,
   () => {
-    console.log('showAnswer', showAnswer.value)
     if ( showAnswer.value ) {
-      scrollToElement(elToScroll1);
+      scrollToElement(elToScroll1, 0, 1000);
     }
   }
 );
@@ -111,10 +126,6 @@ const shuffleCards = () => {
   stacked.value = true;
   setTimeout(() => (stacked.value = false));
 };
-
-const showHint = computed(()=>{
-  return store.reading.number > store.reading.cardsInReading.length
-})
 
 const hintForCardDeck = computed(() => {
   const numberOfCards = reading.value.number - cardsInReading.value.length;
@@ -131,5 +142,31 @@ const getAnswers = () => {
 
 const startNewReadning =() => {
   store.resetState();
+  scrollToElement(elToScroll0, 0, 0);
+  headingAnimation(readingNameEl, 'reading-name');
 }
 </script>
+
+<style scoped>
+.reading-name {
+  animation: light 1.5s ease;
+}
+
+@keyframes light {
+  from {
+    box-shadow: none;
+    background-color: none; 
+  }
+
+  50% {
+    box-shadow: 0 0 7px 7px #f5d254;
+    background-color: #f5d254; 
+  }
+
+  to {
+    box-shadow: none;
+    background-color: none; 
+  }
+}
+</style>
+
