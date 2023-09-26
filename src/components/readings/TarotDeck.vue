@@ -46,7 +46,6 @@ const chooseCard = () => {
     const num = randomCard(currentCardArray.value.length);
     currentCardArray.value = removeCard(num, currentCardArray.value);
     cardsInReading.value.push(num);
-    preloadImage(Math.abs(num), collection.value);
   }
 };
 

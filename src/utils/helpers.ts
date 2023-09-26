@@ -21,16 +21,8 @@ export const wordDeclination = (num: number): string => {
   return 'карты';
 }
 
-/*export const preloadImage = (num: number, imageCollection: string): void => {
-  const preloadLink = document.createElement('link');
-  preloadLink.href = `/assets/${imageCollection}/${num}.png)`;
-  preloadLink.rel = 'preload';
-  preloadLink.as = 'image';
-  document.head.appendChild(preloadLink);
-}*/
-
 export const preloadImage = (num: number, imageCollection: string): void => {
   const img = new Image();
-  img.src = `/assets/${imageCollection}/${num}.png)`;
+  img.src = `/assets/${imageCollection}/${num}.png`;
 }
 

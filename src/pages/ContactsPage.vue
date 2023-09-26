@@ -21,7 +21,7 @@
       <template v-slot:header> Контакты </template>
       <div class="container text-white">
         <p class="text-center contacts-text">
-           Связаться с авторами проекта можно 
+           Связаться с авторами проекта "Время Таро" можно 
             по адресу электронной почты <a class="email-link" href="mailto:tarotmoment@yandex.ru?subject=Mail from Tarot Moment site">tarotmoment@yandex.ru</a>
         </p>  
         <div class="container text-white central-image">
