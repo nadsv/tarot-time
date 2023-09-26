@@ -32,7 +32,7 @@ const position = computed(()=> store.answers.length && store.answers[0].position
 }
 
 .reading-result {
-  margin: 20px 0 0 0;
+  margin: 20px 35px 0 35px;
 }
 
 .card-answer {

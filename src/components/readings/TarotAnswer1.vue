@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-center">
-    <p class="text-center">
+    <p class="text-center card-heading">
       Ваша карта дня - {{position}} карта <span class="card-name text-primary">{{name}}</span>
     </p>
     <p class="card-meaning text-justify">
@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { useReadingStore } from 'src/stores/reading-store';
 
 
@@ -23,6 +23,11 @@ const position = computed(()=> store.answers.length && store.answers[0].position
 </script>
 
 <style scoped>
+
+.card-heading {
+  margin: 0 35px;
+}
+
 .card-name {
   font-size: 20px;
   display: inline-block;
