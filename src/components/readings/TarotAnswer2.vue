@@ -42,8 +42,11 @@ const position = (num: number): string=> {
 @media (max-width: 450px) {
   .card-meaning {
   padding: 0 15px 20px 15px;
-  max-width: 350px
 }
+
+  .card-name {
+    max-width: 280px;
+  }
 }
 
 </style>

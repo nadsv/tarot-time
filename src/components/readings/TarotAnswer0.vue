@@ -1,6 +1,6 @@
 <template>
-  <div class="row q-gutter-md justify-center">
-    <p class="text-center">
+  <div class="row justify-center reading-result">
+    <p class="text-center ">
       {{position}} карта <span class="card-name text-primary">{{name}}</span> отвечает:<br> <span class="card-answer text-primary">{{yes_no}}</span>
     </p>
   </div>
@@ -29,6 +29,10 @@ const position = computed(()=> store.answers.length && store.answers[0].position
 
 .card-name::first-letter {
   text-transform: uppercase;
+}
+
+.reading-result {
+  margin: 20px 0 0 0;
 }
 
 .card-answer {

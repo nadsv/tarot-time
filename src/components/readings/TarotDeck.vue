@@ -124,7 +124,7 @@ const deckStyle = (
   left: calc(50% - var(--card-height) * 0.65 / 2);
 }
 
-.card.enabled:hover {
+.card.enabled:hover, .card.enabled:active {
   clip-path: unset !important;
   box-shadow: 0px 0px 5px 5px #f5d254;
   filter: brightness(150%);

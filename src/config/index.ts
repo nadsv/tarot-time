@@ -50,7 +50,7 @@ export const config = Object.freeze({
           disabled: false,
           owner: 2,
           link: '/readings/2/2/',
-          cardNames: ['Вы', 'Ваши отношения', 'Партнер'],
+          cardNames: ['Вы', 'Отношения', 'Партнер'],
         },
       ],
     },

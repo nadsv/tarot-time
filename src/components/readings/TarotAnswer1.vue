@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-gutter-md justify-center">
+  <div class="row justify-center">
     <p class="text-center">
       Ваша карта дня - {{position}} карта <span class="card-name text-primary">{{name}}</span>
     </p>

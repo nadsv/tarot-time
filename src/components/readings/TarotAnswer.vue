@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="row q-gutter-md justify-center">
+      <div class="row justify-center">
         <component :is="resultOfReading" v-if="store.answerVisibility"/>
         <div v-if="store.errorStatus" class="error text-negative">
               Ошибка получения толкования расклада
