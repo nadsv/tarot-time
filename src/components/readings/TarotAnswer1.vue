@@ -25,7 +25,7 @@ const position = computed(()=> store.answers.length && store.answers[0].position
 <style scoped>
 
 .card-heading {
-  margin: 0 35px;
+  margin: 0 35px 20px 35px;
 }
 
 .card-name {
