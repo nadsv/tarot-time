@@ -101,7 +101,7 @@ const panelColors = ref([
 }
 
 .side-panel-1, .side-panel-2  {
-  display: none;
+  display: none !important;
   padding-top: 20px;
 }
 
