@@ -30,6 +30,7 @@
             spinner-color="white"
             img-class="my-custom-image"
             class="rounded-borders"
+            alt="Картинка с изображением стола, на котором стоят свечи, вазы с цветами и лежит древняя книга"
           >
           <div class="absolute-bottom text-subtitle1 text-center font-family">
               Карты Таро - это ваше зеркало, и только вы решаете, что оно отражает.
@@ -48,6 +49,7 @@
             spinner-color="white"
             img-class="my-custom-image"
             class="rounded-borders"
+            alt="Картинка с изображением стола, на котором стоят свечи, вазы с цветами и лежит старые карты Таро"
           >
           <div class="absolute-bottom text-subtitle1 text-center font-family">
               Карты Таро не контролируют ваше будущее, но говорят о нем.
@@ -86,7 +88,7 @@ const panelColors = ref([
 }
 
 .contacts-text {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .email-link:hover {
@@ -113,6 +115,9 @@ const panelColors = ref([
   }
   .central-image {
     display: none;
+  }
+  .contacts-text {
+    font-size: 24px;
   }
 }
 

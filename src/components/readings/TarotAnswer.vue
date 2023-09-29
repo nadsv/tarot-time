@@ -33,6 +33,7 @@ const resultOfReading = computed(()=> {
   padding: 50px 20px 20px 20px;
   font-weight: bolder;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .container {
