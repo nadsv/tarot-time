@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent, ref, computed } from 'vue';
+import { defineAsyncComponent, computed } from 'vue';
 import { useReadingStore } from 'src/stores/reading-store';
 
 

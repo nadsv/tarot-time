@@ -46,7 +46,6 @@ withDefaults(defineProps<Props>(), {
   align-items: center;
   justify-content: flex-start;
   flex-basis: 599px;
-  min-height: calc(var(--card-height) * 3 + 100px);
   border-image-slice: 27 27 27 27;
   border-image-width: 15px 15px 15px 15px;
   border-image-outset: 8px 8px 8px 8px;
@@ -72,10 +71,12 @@ header {
   align-items: center;
   flex-grow: 1;
   width: 100%;
+  height: 100%;
 }
 
 .main {
  width: 100%;
+ flex-grow: 2;
 }
 
 .panel-name {

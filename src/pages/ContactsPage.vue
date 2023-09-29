@@ -2,7 +2,7 @@
   <q-page class="row justify-evenly">
     <decorative-panel class="side-panel-1" :panel-color="panelColors[0]">
       
-      <div class="container text-white">
+      <div class="container text-white side-panel">
         <q-img
             src="assets/contacts_1.jpg"
             spinner-color="white"
@@ -19,7 +19,7 @@
 
      <decorative-panel :panel-color="panelColors[1]">
       <template v-slot:header> Контакты </template>
-      <div class="container text-white">
+      <div class="container text-white central-panel">
         <p class="text-center contacts-text">
            Связаться с авторами проекта "Время Таро" можно 
             по адресу электронной почты <a class="email-link" href="mailto:tarotmoment@yandex.ru?subject=Mail from Tarot Moment site">tarotmoment@yandex.ru</a>
@@ -43,7 +43,7 @@
 
     <decorative-panel class="side-panel-2" :panel-color="panelColors[2]">
       
-      <div class="container text-white">
+      <div class="container text-white side-panel">
         <q-img
             src="assets/contacts_2.jpg"
             spinner-color="white"
@@ -74,10 +74,28 @@ const panelColors = ref([
 </script>
 
 <style scoped>
+
+
 .container {
   margin-left: 20px;
   margin-right: 20px;
   max-width: 550px;
+}
+
+.central-panel {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -50px;
+}
+
+.side-panel {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -30px;
 }
 
 .email-link {
@@ -111,7 +129,7 @@ const panelColors = ref([
 
 @media (min-width: 1196px) {
   .side-panel-1 {
-    display: block;
+    display: block !important;
   }
   .central-image {
     display: none;
@@ -123,7 +141,7 @@ const panelColors = ref([
 
 @media (min-width: 1800px) {
   .side-panel-2 {
-    display: block;
+    display: block !important;
   }
 }
 
