@@ -90,6 +90,7 @@ header {
 .action-panel {
   padding-top: 50px;
   margin-bottom: 20px;
+  height: 86px;
 }
 
 .hint {

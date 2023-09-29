@@ -130,6 +130,10 @@ const cardFaceStyle = (
 }
 
 .selected-cards-wrapper {
-  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 </style>
