@@ -75,8 +75,11 @@ header {
 }
 
 .main {
- width: 100%;
- flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 2;
 }
 
 .panel-name {
