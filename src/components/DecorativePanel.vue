@@ -103,7 +103,7 @@ header {
   width: 70px;
   height: 70px;
   padding: 20px 8px 0 8px;
-  background-color: #8d118a;
+  border: 3px dotted #b67729;
   font-size: 10px;
   text-align: center;
   border-radius: 35px;
