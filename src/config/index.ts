@@ -9,6 +9,8 @@ export const config = Object.freeze({
       disabled: false,
       owner: null,
       link: '/readings/0/',
+      invert: 1,
+      field(position: string) {return position+'_yes'},
     },
     {
       id: 1,
@@ -17,6 +19,18 @@ export const config = Object.freeze({
       disabled: false,
       owner: null,
       link: '/readings/1/',
+      invert: 0,
+      field(position: string) {return 'card_of_day'}
+    },
+    {
+      id: 3,
+      title: 'Совет карты',
+      number: 1,
+      disabled: false,
+      owner: null,
+      link: '/readings/3/',
+      invert: 0,
+      field(position: string) {return 'advice'}
     },
     {
       id: 2,
@@ -33,6 +47,8 @@ export const config = Object.freeze({
           owner: 2,
           link: '/readings/2/0/',
           cardNames: ['Прошлое', 'Настоящее', 'Будущее'],
+          invert: 1,
+          field(position: string) {return position+'_meaning'}
         },
         {
           id: 1,
@@ -42,6 +58,8 @@ export const config = Object.freeze({
           owner: 2,
           link: '/readings/2/1/',
           cardNames: ['Ситуация', 'Действие', 'Исход'],
+          invert: 1,
+          field(position: string) {return position+'_meaning'}
         },
         {
           id: 2,
@@ -51,6 +69,8 @@ export const config = Object.freeze({
           owner: 2,
           link: '/readings/2/2/',
           cardNames: ['Вы', 'Отношения', 'Партнер'],
+          invert: 1,
+          field(position: string) {return position+'_meaning'}
         },
       ],
     },

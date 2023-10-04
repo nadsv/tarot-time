@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-center">
     <p class="text-center card-heading">
-      Ваша карта дня - <span class="card-name text-primary">{{name}}</span>
+      Карта <span class="card-name text-primary">{{name}}</span> советует следующее: 
     </p>
     <p class="card-meaning text-justify">
       {{result}}

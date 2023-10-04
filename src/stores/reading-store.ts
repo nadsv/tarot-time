@@ -42,10 +42,10 @@ export const useReadingStore = defineStore('readings', {
       this.showAnswer = false;
     },
 
-    async getAnswers(payload: {id: number; position: number; index: number}) {
+    async getAnswers(payload: {id: number; position: number; index: number; field: string}) {
       try {
         if (this.errorStatus) return;
-        const response = await api.get(`/card/${payload.id}?p=${payload.position}`);
+        const response = await api.get(`/card/${payload.id}?p=${payload.position}&f=${payload.field}`);
         if (response.data.message) throw new Error(response.data.message);
         this.answers[payload.index] = response.data;
         this.answerStatus = (this.answers.length === this.reading.number);

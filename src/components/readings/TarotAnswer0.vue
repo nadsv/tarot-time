@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-center reading-result">
     <p class="text-center ">
-      {{position}} карта <span class="card-name text-primary">{{name}}</span> отвечает:<br> <span class="card-answer text-primary">{{yes_no}}</span>
+      {{position}} карта <span class="card-name text-primary">{{name}}</span> отвечает:<br> <span class="card-answer text-primary">{{result}}</span>
     </p>
   </div>
 </template>
@@ -14,7 +14,7 @@ import { useReadingStore } from 'src/stores/reading-store';
 const store = useReadingStore();
 
 const name = computed(()=> store.answers.length ? store.answers[0].name : '');
-const yes_no = computed(()=> store.answers.length ? store.answers[0].yes_no : '');
+const result = computed(()=> store.answers.length ? store.answers[0].result : '');
 const position = computed(()=> store.answers.length && store.answers[0].position === 'reversed' ? 'Перевернутая' : 'Прямая');
 
 </script>

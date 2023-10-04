@@ -27,7 +27,6 @@ const {
   currentCardArray,
   cardsInReading,
   reading,
-  collection,
   choosingCardsIsEnabled,
 } = storeToRefs(store);
 
@@ -43,7 +42,7 @@ const getEndOfSuffling = (event: TransitionEvent) => {
 const chooseCard = () => {
   const numberOfCards = reading.value.number - cardsInReading.value.length;
   if (numberOfCards) {
-    const num = randomCard(currentCardArray.value.length);
+    const num = randomCard(currentCardArray.value.length, reading.value.invert);
     currentCardArray.value = removeCard(num, currentCardArray.value);
     cardsInReading.value.push(num);
   }

@@ -52,14 +52,15 @@ let store = useReadingStore();
 const changeReading = (params)=>{
     const id = params.reading;
     const subId = params.subreading;
+    console.log(id, subId)
     if (subId) {
-      const owner = config.READINGS[+id];
-      store.reading = owner.subReadings[+subId];
+      const owner = config.READINGS.filter(item => item.id === +id)[0];
+      store.reading = owner.subReadings.filter(item => item.id === +subId)[0];
       store.resetState();
       return;
     }
     if (id) {
-      store.reading = config.READINGS[+id];
+      store.reading = config.READINGS.filter(item => item.id === +id)[0];
       store.resetState();
     }
 }

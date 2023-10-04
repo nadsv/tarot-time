@@ -11,8 +11,10 @@ export const removeCard = (num: number, arr: number[]) : number[] => {
   return newArr
 }
 
-export const randomCard = (max: number) : number => {
-  return Math.floor(Math.random() * max) *  ( (Math.random()>0.5)? 1 : -1 );
+export const randomCard = (max: number, invert: number) : number => {
+  const mightInvert = invert ? -1 : 1; 
+  console.log(invert, mightInvert)
+  return Math.floor(Math.random() * max) *  ( (Math.random()>0.5)? 1 : mightInvert );
 }
 
 export const wordDeclination = (num: number): string => {
