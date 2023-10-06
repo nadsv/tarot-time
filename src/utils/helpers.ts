@@ -13,7 +13,6 @@ export const removeCard = (num: number, arr: number[]) : number[] => {
 
 export const randomCard = (max: number, invert: number) : number => {
   const mightInvert = invert ? -1 : 1; 
-  console.log(invert, mightInvert)
   return Math.floor(Math.random() * max) *  ( (Math.random()>0.5)? 1 : mightInvert );
 }
 
