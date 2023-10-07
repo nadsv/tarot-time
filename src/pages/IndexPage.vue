@@ -162,9 +162,8 @@ const startNewReadning = () => {
   .answer-panel {
     height: 0;
     overflow: hidden;
-    background: none;
-    border: none;
-    margin: 0;
+    border: none !important;
+    margin: 0 !important;
   }
 }
 
