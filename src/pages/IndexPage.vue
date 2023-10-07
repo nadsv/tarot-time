@@ -1,7 +1,11 @@
 <template>
   <q-page class="row items-strech justify-evenly">
     <decorative-panel id="scrollToDeck" :panel-color="panelColors[0]">
-      <template v-slot:header><span id="readingName" class="reading-name">{{ reading.title }}</span></template>
+      <template v-slot:header
+        ><span id="readingName" class="reading-name">{{
+          reading.title
+        }}</span></template
+      >
       <tarot-deck :stacked="stacked"></tarot-deck>
       <template v-slot:actionPanel>
         <q-btn
@@ -27,7 +31,10 @@
         />
       </template>
     </decorative-panel>
-    <decorative-panel id="scrollToAnswer" class="answer-panel" :style="{display: showAnswer ? 'inherit' : 'none'}" :panel-color="panelColors[2]"
+    <decorative-panel
+      id="scrollToAnswer"
+      :class="{ 'answer-panel': !showAnswer }"
+      :panel-color="panelColors[2]"
       ><template v-slot:header>Толкование</template>
       <tarot-answer></tarot-answer>
       <template v-slot:actionPanel v-if="showResult">
@@ -70,9 +77,10 @@ const { getScrollTarget, setVerticalScrollPosition } = scroll;
 
 const scrollToElement = (el: HTMLElement, delay: number, time: 0) => {
   const target = getScrollTarget(el);
+  console.log(el.offsetWidth);
   const offset = el.offsetTop - 20;
   const duration = time;
-  setTimeout(() => setVerticalScrollPosition(target, offset, duration),delay);
+  setTimeout(() => setVerticalScrollPosition(target, offset, duration), delay);
 };
 
 let elToScroll0: HTMLElement | null;
@@ -87,14 +95,9 @@ onMounted(() => {
   readingNameEl = document.querySelector('#readingName');
 });
 
-let showResult =  computed(()=>{return store.answerVisibility || store.errorStatus});
-watch(
-  () => {return store.answerVisibility || store.errorStatus},
-  () => {
-    console.log('fdfd', showResult);
-    scrollToElement(elToScroll1, 0, 1000);
-  }
-);
+let showResult = computed(() => {
+  return store.answerVisibility || store.errorStatus;
+});
 
 watch(
   () => cardsInReading.value.length,
@@ -108,10 +111,10 @@ watch(
   }
 );
 
-const headingAnimation = (el:HTMLElement, className: string) => {
-    el?.classList.add(className);
-    setTimeout(_=> el?.classList.remove(className), 1500 );
-}
+const headingAnimation = (el: HTMLElement, className: string) => {
+  el?.classList.add(className);
+  setTimeout((_) => el?.classList.remove(className), 1500);
+};
 
 watch(
   () => reading.value.title,
@@ -119,15 +122,6 @@ watch(
     headingAnimation(readingNameEl, 'reading-name');
   }
 );
-
-/*watch(
-  () => showAnswer.value,
-  () => {
-    if ( showAnswer.value ) {
-      scrollToElement(elToScroll1, 0, 1000);
-    }
-  }
-);*/
 
 const stacked = ref(false);
 
@@ -139,21 +133,20 @@ const shuffleCards = () => {
 const hintForCardDeck = computed(() => {
   const numberOfCards = reading.value.number - cardsInReading.value.length;
   return numberOfCards
-    ? `Выберите ${numberOfCards} ${wordDeclination(
-        numberOfCards
-      )}`
+    ? `Выберите ${numberOfCards} ${wordDeclination(numberOfCards)}`
     : 'Карты выбраны';
 });
 
 const getAnswers = () => {
   store.showAnswer = true;
-}
+  scrollToElement(elToScroll1, 0, 1000);
+};
 
-const startNewReadning =() => {
+const startNewReadning = () => {
   store.resetState();
   scrollToElement(elToScroll0, 0, 0);
   headingAnimation(readingNameEl, 'reading-name');
-}
+};
 </script>
 
 <style scoped>
@@ -162,30 +155,33 @@ const startNewReadning =() => {
 }
 
 .answer-panel {
-  display: inherit;
+  height: auto;
 }
 
 @media (max-width: 1860px) {
   .answer-panel {
-    display: none;
+    height: 0;
+    overflow: hidden;
+    background: none;
+    border: none;
+    margin: 0;
   }
 }
 
 @keyframes light {
   from {
     box-shadow: none;
-    background-color: none; 
+    background-color: none;
   }
 
   50% {
     box-shadow: 0 0 7px 7px #f5d254;
-    background-color: #f5d254; 
+    background-color: #f5d254;
   }
 
   to {
     box-shadow: none;
-    background-color: none; 
+    background-color: none;
   }
 }
 </style>
-
