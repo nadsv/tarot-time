@@ -160,7 +160,7 @@ const startNewReadning = () => {
 @media (max-width: 1905px) {
   .answer-panel {
     height: 0;
-    flex-basis: 0;
+    flex-basis: 0 !important;
     overflow: hidden;
     border: none !important;
     margin: 0 !important;
