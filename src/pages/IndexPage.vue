@@ -77,7 +77,6 @@ const { getScrollTarget, setVerticalScrollPosition } = scroll;
 
 const scrollToElement = (el: HTMLElement, delay: number, time: 0) => {
   const target = getScrollTarget(el);
-  console.log(el.offsetWidth);
   const offset = el.offsetTop - 20;
   const duration = time;
   setTimeout(() => setVerticalScrollPosition(target, offset, duration), delay);
@@ -158,9 +157,10 @@ const startNewReadning = () => {
   height: auto;
 }
 
-@media (max-width: 1860px) {
+@media (max-width: 1905px) {
   .answer-panel {
     height: 0;
+    flex-basis: 0;
     overflow: hidden;
     border: none !important;
     margin: 0 !important;
