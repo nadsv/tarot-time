@@ -18,7 +18,7 @@
       </template>
       <template v-slot:hint>{{ hintForCardDeck }}</template>
     </decorative-panel>
-    <decorative-panel id="scrollToSelectedCards" :panel-color="panelColors[1]"
+    <decorative-panel id="scrollToSelectedCards" class="selected-cards-panel" :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранные карты</template>
       <selected-cards></selected-cards>
       <template v-slot:actionPanel>
@@ -31,7 +31,6 @@
         />
       </template>
     </decorative-panel>
-    <decorative-panel id="scrollToAnswer" :panel-color="panelColors[2]"
     <decorative-panel
       id="scrollToAnswer"
       :class="{ 'answer-panel': !showAnswer }"
@@ -158,6 +157,11 @@ const startNewReadning = () => {
   height: auto;
 }
 
+.selected-cards-panel {
+  margin-right: inherit;
+  margin-left: inherit;
+}
+
 @media (max-width: 1905px) {
   .answer-panel {
     height: 0;
@@ -165,6 +169,13 @@ const startNewReadning = () => {
     overflow: hidden;
     border: none !important;
     margin: 0 !important;
+  }
+}
+
+@media (max-width: 1245px) {
+  .selected-cards-panel {
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
