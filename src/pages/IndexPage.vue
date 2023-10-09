@@ -174,8 +174,8 @@ const startNewReadning = () => {
 
 @media (max-width: 1245px) {
   .selected-cards-panel {
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: auto !important;
+    margin-left: auto !important;
   }
 }
 
