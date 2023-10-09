@@ -31,14 +31,11 @@
         />
       </template>
     </decorative-panel>
-<<<<<<< HEAD
     <decorative-panel id="scrollToAnswer" :panel-color="panelColors[2]"
-=======
     <decorative-panel
       id="scrollToAnswer"
       :class="{ 'answer-panel': !showAnswer }"
       :panel-color="panelColors[2]"
->>>>>>> b8d71262194485d1bea63431628bfeb3071b8b46
       ><template v-slot:header>Толкование</template>
       <tarot-answer></tarot-answer>
       <template v-slot:actionPanel v-if="showResult">
@@ -157,8 +154,6 @@ const startNewReadning = () => {
   animation: light 1.5s ease;
 }
 
-<<<<<<< HEAD
-=======
 .answer-panel {
   height: auto;
 }
@@ -173,7 +168,6 @@ const startNewReadning = () => {
   }
 }
 
->>>>>>> b8d71262194485d1bea63431628bfeb3071b8b46
 @keyframes light {
   from {
     box-shadow: none;
