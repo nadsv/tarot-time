@@ -179,6 +179,13 @@ const startNewReadning = () => {
   }
 }
 
+@media (max-width: 639px) {
+  .selected-cards-panel {
+    margin-right: 15px !important;
+    margin-left: 15px !important;
+  }
+}
+
 @keyframes light {
   from {
     box-shadow: none;
