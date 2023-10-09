@@ -27,7 +27,7 @@
         />
       </template>
     </decorative-panel>
-    <decorative-panel id="scrollToAnswer" class="answer-panel" :style="{display: showAnswer ? 'inherit' : 'none'}" :panel-color="panelColors[2]"
+    <decorative-panel id="scrollToAnswer" :panel-color="panelColors[2]"
       ><template v-slot:header>Толкование</template>
       <tarot-answer></tarot-answer>
       <template v-slot:actionPanel v-if="showResult">
@@ -159,16 +159,6 @@ const startNewReadning =() => {
 <style scoped>
 .reading-name {
   animation: light 1.5s ease;
-}
-
-.answer-panel {
-  display: inherit;
-}
-
-@media (max-width: 1860px) {
-  .answer-panel {
-    display: none;
-  }
 }
 
 @keyframes light {
