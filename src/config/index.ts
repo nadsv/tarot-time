@@ -70,7 +70,7 @@ export const config = Object.freeze({
           link: '/readings/2/2/',
           cardNames: ['Вы', 'Отношения', 'Партнер'],
           invert: 1,
-          field(position: string) {return position+'_meaning'}
+          field(position: string) {return position+'_love'}
         },
       ],
     },
