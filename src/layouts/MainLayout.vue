@@ -11,14 +11,14 @@
           @click="toggleLeftDrawer"
           class="menu-visibility"
         />
-
+       
         <q-avatar square>
           <img src="~assets/tarot-time-logo.png" alt="Лого Время Таро"/>
         </q-avatar>
 
         <q-toolbar-title class="title"> Время Таро </q-toolbar-title>
       </q-toolbar>
-
+      
       <horizontal-menu
         :readings="config.READINGS"
         :links="config.LINKS"
@@ -91,6 +91,7 @@ function toggleLeftDrawer() {
 @media (max-width: 1023.99px) {
   .menu-visibility {
     display: flex;
+    margin-right: 10px;
   }
 }
 
