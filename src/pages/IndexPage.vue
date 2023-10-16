@@ -6,6 +6,8 @@
           reading.title
         }}</span></template
       >
+      <template v-slot:leftHint>{{ reading.leftHint }}</template>
+      <template v-slot:rightHint>{{ hintForCardDeck }}</template>
       <tarot-deck :stacked="stacked"></tarot-deck>
       <template v-slot:actionPanel>
         <q-btn
@@ -16,7 +18,6 @@
           @laid-out="(value: boolean) => {}"
         />
       </template>
-      <template v-slot:hint>{{ hintForCardDeck }}</template>
     </decorative-panel>
     <decorative-panel id="scrollToSelectedCards" class="selected-cards-panel" :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранные карты</template>

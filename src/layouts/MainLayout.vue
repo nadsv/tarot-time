@@ -12,7 +12,7 @@
           class="menu-visibility"
         />
        
-        <q-avatar square>
+        <q-avatar square class="logo">
           <img src="~assets/tarot-time-logo.png" alt="Лого Время Таро"/>
         </q-avatar>
 
@@ -84,6 +84,10 @@ function toggleLeftDrawer() {
 </script>
 
 <style scoped>
+.logo {
+  margin-left: 10px;
+}
+
 .menu-visibility {
   display: none;
 }
@@ -91,7 +95,6 @@ function toggleLeftDrawer() {
 @media (max-width: 1023.99px) {
   .menu-visibility {
     display: flex;
-    margin-right: 10px;
   }
 }
 
