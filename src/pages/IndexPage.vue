@@ -161,6 +161,7 @@ const startNewReadning = () => {
   .answer-panel {
     height: 0;
     flex-basis: 0 !important;
+    flex-shrink: 100;
     overflow: hidden;
     border: none !important;
     margin: 0 !important;
