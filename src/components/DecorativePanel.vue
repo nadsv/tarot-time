@@ -18,7 +18,7 @@
     <div class="right-hint text-accent" v-if="slots.rightHint">
       <slot name="rightHint"></slot>
     </div>
-    
+
     <div class="wrapper">
       <div class="main">
         <slot></slot>
@@ -27,7 +27,6 @@
         <slot name="actionPanel"></slot>
       </div>
     </div>
-  
   </div>
 </template>
 
@@ -49,7 +48,7 @@ withDefaults(defineProps<Props>(), {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  flex-basis: 599px;
+  flex-basis: 580px;
   border-image-slice: 27 27 27 27;
   border-image-width: 15px 15px 15px 15px;
   border-image-outset: 8px 8px 8px 8px;

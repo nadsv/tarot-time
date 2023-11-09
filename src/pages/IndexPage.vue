@@ -19,7 +19,10 @@
         />
       </template>
     </decorative-panel>
-    <decorative-panel id="scrollToSelectedCards" class="selected-cards-panel" :panel-color="panelColors[1]"
+    <decorative-panel
+      id="scrollToSelectedCards"
+      class="selected-cards-panel"
+      :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранные карты</template>
       <selected-cards></selected-cards>
       <template v-slot:actionPanel>
@@ -150,6 +153,10 @@ const startNewReadning = () => {
 </script>
 
 <style scoped>
+#scrollToDeck,
+#scrollToSelectedCards {
+  margin-right: 20px;
+}
 .reading-name {
   animation: light 1.5s ease;
 }
@@ -158,12 +165,7 @@ const startNewReadning = () => {
   height: auto;
 }
 
-.selected-cards-panel {
-  margin-right: inherit;
-  margin-left: inherit;
-}
-
-@media (max-width: 1905px) {
+@media (max-width: 1840px) {
   .answer-panel {
     height: 0;
     flex-basis: 0 !important;
