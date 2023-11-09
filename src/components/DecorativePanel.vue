@@ -11,8 +11,12 @@
       </h2>
     </header>
 
-    <div class="hint text-accent" v-if="slots.hint">
-      <slot name="hint"></slot>
+    <div class="left-hint text-accent" v-if="slots.leftHint">
+      <slot name="leftHint"></slot>
+    </div>
+
+    <div class="right-hint text-accent" v-if="slots.rightHint">
+      <slot name="rightHint"></slot>
     </div>
     
     <div class="wrapper">
@@ -96,17 +100,28 @@ header {
   height: 86px;
 }
 
-.hint {
+.left-hint {
   position: absolute;
-  top: 43px;
-  right: 2px;
-  width: 70px;
-  height: 70px;
-  padding: 20px 8px 0 8px;
+  top: 47px;
+  left: 4px;
+  max-width: 120px;
+  padding: 4px;
   border: 3px dotted #b67729;
   font-size: 10px;
   text-align: center;
   border-radius: 35px;
+}
+
+.right-hint {
+  position: absolute;
+  top: 47px;
+  right: 4px;
+  padding: 4px;
+  border: 3px dotted #b67729;
+  font-size: 10px;
+  text-align: center;
+  border-radius: 35px;
+  max-width: 100px;
 }
 
 .fade-enter-active,
