@@ -2,9 +2,7 @@
   <q-page class="row items-strech justify-evenly">
     <decorative-panel id="scrollToDeck" :panel-color="panelColors[0]">
       <template v-slot:header
-        ><span id="readingName" class="reading-name">{{
-          reading.title
-        }}</span></template
+        ><span id="readingName">{{ reading.title }}</span></template
       >
       <template v-slot:leftHint>{{ reading.leftHint }}</template>
       <template v-slot:rightHint>{{ hintForCardDeck }}</template>
@@ -96,6 +94,7 @@ onMounted(() => {
   elToScroll = document.querySelector('#scrollToSelectedCards');
   elToScroll1 = document.querySelector('#scrollToAnswer');
   readingNameEl = document.querySelector('#readingName');
+  headingAnimation(readingNameEl, 'reading-name');
 });
 
 let showResult = computed(() => {
