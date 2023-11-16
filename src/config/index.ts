@@ -10,8 +10,10 @@ export const config = Object.freeze({
       owner: null,
       link: '/readings/0/',
       invert: 1,
-      field(position: string) {return position+'_yes'},
-      leftHint: 'Сформулируйте "Да-Нет" вопрос'
+      field(position: string, place: number) {
+        return position + '_yes';
+      },
+      leftHint: 'Сформулируйте "Да-Нет" вопрос',
     },
     {
       id: 1,
@@ -21,8 +23,10 @@ export const config = Object.freeze({
       owner: null,
       link: '/readings/1/',
       invert: 0,
-      field(position: string) {return 'card_of_day'},
-      leftHint: 'Узнайте карту на сегодня'
+      field(position: string, place: number) {
+        return 'card_of_day';
+      },
+      leftHint: 'Узнайте карту на сегодня',
     },
     {
       id: 3,
@@ -32,8 +36,10 @@ export const config = Object.freeze({
       owner: null,
       link: '/readings/3/',
       invert: 0,
-      field(position: string) {return 'advice'},
-      leftHint: 'Спросите совет у карт'
+      field(position: string, place: number) {
+        return 'advice';
+      },
+      leftHint: 'Спросите совет у карт',
     },
     {
       id: 2,
@@ -51,8 +57,10 @@ export const config = Object.freeze({
           link: '/readings/2/0/',
           cardNames: ['Прошлое', 'Настоящее', 'Будущее'],
           invert: 1,
-          field(position: string) {return position+'_meaning'},
-          leftHint: 'Подумайте о вашем жизненном пути'
+          field(position: string, place: number) {
+            return position + '_meaning';
+          },
+          leftHint: 'Подумайте о вашем жизненном пути',
         },
         {
           id: 1,
@@ -63,8 +71,22 @@ export const config = Object.freeze({
           link: '/readings/2/1/',
           cardNames: ['Причина', 'Действие', 'Итог'],
           invert: 1,
-          field(position: string) {return position+'_meaning'},
-          leftHint: 'Подумайте о вашей ситуации'
+          field(position: string, place: number) {
+            let fieldName = '';
+            switch (place) {
+              case 0:
+                fieldName = position + '_' + 'situation';
+                break;
+              case 1:
+                fieldName = 'advice';
+                break;
+              default:
+                fieldName = position + '_' + 'meaning';
+                break;
+            }
+            return fieldName;
+          },
+          leftHint: 'Подумайте о вашей ситуации',
         },
         {
           id: 2,
@@ -75,8 +97,19 @@ export const config = Object.freeze({
           link: '/readings/2/2/',
           cardNames: ['Вы', 'Отношения', 'Партнер'],
           invert: 1,
-          field(position: string) {return position+'_love'},
-          leftHint: 'Подумайте о ваших отношениях'
+          field(position: string, place: number) {
+            let fieldName = '';
+            switch (place) {
+              case 1:
+                fieldName = 'love';
+                break;
+              default:
+                fieldName = 'meaning';
+                break;
+            }
+            return position + '_' + fieldName;
+          },
+          leftHint: 'Подумайте о ваших отношениях',
         },
       ],
     },
