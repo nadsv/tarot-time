@@ -8,12 +8,12 @@ export const useReadingStore = defineStore('readings', {
     cardsInReading: [],
     openedCards: [],
     currentNumberOfCards: config.TOTAL_NUMBER_OF_CARDS,
-    collection: 'cards-rider-waite',
+    collection: 'cards-rider–waite',
     reading: config.READINGS[0],
     answers: [],
     answerStatus: false,
     errorStatus: false,
-    showAnswer: false
+    showAnswer: false,
   }),
 
   getters: {
@@ -21,11 +21,21 @@ export const useReadingStore = defineStore('readings', {
       return state.reading.number > state.cardsInReading.length;
     },
     suffixForAnswer(state) {
-      return state.reading.owner  ? state.reading.owner : state.reading.id
+      return state.reading.owner ? state.reading.owner : state.reading.id;
     },
     answerVisibility(state) {
-      return state.answerStatus === true && state.errorStatus === false && state.showAnswer === true;
-    } 
+      return (
+        state.answerStatus === true &&
+        state.errorStatus === false &&
+        state.showAnswer === true
+      );
+    },
+    cardByNumber: (state) => (num: number) => {
+      return state.answers.find((card) => card.id === num.toString());
+    },
+    linkByNumber: (state) => (num: number) => {
+      return `/assets/${state.collection}/${Math.abs(num)}.png`;
+    },
   },
 
   actions: {
@@ -36,22 +46,29 @@ export const useReadingStore = defineStore('readings', {
       this.currentCardArray = config.INITIAL_ARRAY_OF_CARDS;
       this.cardsInReading = [];
       this.openedCards = [];
-      this.answers =[];
+      this.answers = [];
       this.answerStatus = false;
       this.errorStatus = false;
       this.showAnswer = false;
     },
 
-    async getAnswers(payload: {id: number; position: number; index: number; field: string}) {
+    async getAnswers(payload: {
+      id: number;
+      position: number;
+      index: number;
+      field: string;
+    }) {
       try {
         if (this.errorStatus) return;
-        const response = await api.get(`/card/${payload.id}?p=${payload.position}&f=${payload.field}`);
+        const response = await api.get(
+          `/card/${payload.id}?p=${payload.position}&f=${payload.field}`
+        );
         if (response.data.message) throw new Error(response.data.message);
         this.answers[payload.index] = response.data;
-        this.answerStatus = (this.answers.length === this.reading.number);
+        this.answerStatus = this.answers.length === this.reading.number;
       } catch (error) {
         this.errorStatus = true;
-        console.log('Ошибка получения ответа', error)
+        console.log('Ошибка получения ответа', error);
       }
     },
   },

@@ -5,7 +5,7 @@
       :key="num"
       class="card is-flipped"
       ref="cardArray"
-      @click="flipCard(index, num)"
+      @click="onClick(index, num)"
     >
       <div
         class="card__face card__face--front text-accent"
@@ -18,25 +18,62 @@
       <div class="card__face card__face--back"></div>
     </div>
   </div>
+  <q-dialog v-model="showDialog">
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">{{ largeCardName }}</div>
+      </q-card-section>
+
+      <q-card-section class="q-pt-none">
+        <div class="text-white side-panel">
+          <q-img
+            :src="largeCardLink"
+            spinner-color="white"
+            class="rounded-borders large-image"
+          >
+          </q-img>
+        </div>
+      </q-card-section>
+
+      <q-card-actions align="right">
+        <q-btn label="OK" color="primary" v-close-popup />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
+import TarotDialog from '../TarotDialog.vue';
 
 const store = useReadingStore();
-const { cardsInReading, openedCards, reading } = storeToRefs(store);
+const { cardsInReading, openedCards, reading, collection } = storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const counter = ref<HTMLInputElement[]>([]);
+let showDialog = ref(false);
+let largeCardName = ref('');
+let largeCardLink = ref('');
 
-const flipCard = (key: number, num: number) => {
-  if (
-    openedCards.value.includes(num) ||
-    reading.value.number !== cardsInReading.value.length
-  )
+const showLargeCard = (num: number) => {
+  showDialog.value = true;
+  const card = store.cardByNumber(num);
+  largeCardName.value = card.name;
+  largeCardLink.value = store.linkByNumber(num);
+  console.log('fromShow', largeCardLink.value);
+};
+
+const onClick = (key: number, num: number) => {
+  if (reading.value.number !== cardsInReading.value.length) {
     return;
+  }
+  if (openedCards.value.includes(num)) {
+    showLargeCard(Math.abs(num));
+    return;
+  }
+
   cardArray.value[key].classList.toggle('is-flipped');
   if (num < 0 && reading.value.cardNames) {
     counter.value[key].classList.toggle('is-reversed');
@@ -59,8 +96,7 @@ const cardFaceStyle = (
   num: number
 ): { 'background-image': string; transform?: string } => {
   let style = {
-    'background-image':
-      'url(/assets/cards-rider–waite/' + Math.abs(num) + '.png)',
+    'background-image': `url(${store.linkByNumber(num)}`,
   };
   if (num < 0) {
     return {
@@ -68,10 +104,7 @@ const cardFaceStyle = (
       transform: 'scale(-1)',
     };
   }
-  return {
-    'background-image':
-      'url(/assets/cards-rider–waite/' + Math.abs(num) + '.png)',
-  };
+  return style;
 };
 </script>
 
@@ -142,5 +175,10 @@ const cardFaceStyle = (
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.large-image {
+  width: 240px;
+  height: 417px;
 }
 </style>
