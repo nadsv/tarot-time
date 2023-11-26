@@ -11,14 +11,19 @@
           @click="toggleLeftDrawer"
           class="menu-visibility"
         />
-       
+
         <q-avatar square class="logo">
-          <img src="~assets/tarot-time-logo.png" width="38" height="38" alt="Лого Время Таро"/>
+          <img
+            src="~assets/tarot-time-logo.png"
+            width="38"
+            height="38"
+            alt="Лого Момент Таро"
+          />
         </q-avatar>
 
-        <q-toolbar-title class="title"> Время Таро </q-toolbar-title>
+        <q-toolbar-title class="title"> Момент Таро </q-toolbar-title>
       </q-toolbar>
-      
+
       <horizontal-menu
         :readings="config.READINGS"
         :links="config.LINKS"
@@ -49,31 +54,31 @@ import { useReadingStore } from 'src/stores/reading-store';
 const route = useRoute();
 let store = useReadingStore();
 
-const changeReading = (params)=>{
-    const id = params.reading;
-    const subId = params.subreading;
-    if (subId) {
-      const owner = config.READINGS.filter(item => item.id === +id)[0];
-      store.reading = owner.subReadings.filter(item => item.id === +subId)[0];
-      store.resetState();
-      return;
-    }
-    if (id) {
-      store.reading = config.READINGS.filter(item => item.id === +id)[0];
-      store.resetState();
-    }
-}
+const changeReading = (params) => {
+  const id = params.reading;
+  const subId = params.subreading;
+  if (subId) {
+    const owner = config.READINGS.filter((item) => item.id === +id)[0];
+    store.reading = owner.subReadings.filter((item) => item.id === +subId)[0];
+    store.resetState();
+    return;
+  }
+  if (id) {
+    store.reading = config.READINGS.filter((item) => item.id === +id)[0];
+    store.resetState();
+  }
+};
 
-onMounted(()=>{
-   const params = route.params;
-   changeReading(params); 
-})
+onMounted(() => {
+  const params = route.params;
+  changeReading(params);
+});
 
 watch(
   () => route.params,
   (params) => {
-    changeReading(params); 
-  }  
+    changeReading(params);
+  }
 );
 
 const leftDrawerOpen = ref(false);
