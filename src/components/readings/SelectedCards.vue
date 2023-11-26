@@ -18,28 +18,11 @@
       <div class="card__face card__face--back"></div>
     </div>
   </div>
-  <q-dialog v-model="showDialog">
-    <q-card>
-      <q-card-section>
-        <div class="text-h6">{{ largeCardName }}</div>
-      </q-card-section>
-
-      <q-card-section class="q-pt-none">
-        <div class="text-white side-panel">
-          <q-img
-            :src="largeCardLink"
-            spinner-color="white"
-            class="rounded-borders large-image"
-          >
-          </q-img>
-        </div>
-      </q-card-section>
-
-      <q-card-actions align="right">
-        <q-btn label="OK" color="primary" v-close-popup />
-      </q-card-actions>
-    </q-card>
-  </q-dialog>
+  <tarot-dialog
+    :link="largeCardLink"
+    :name="largeCardLink"
+    v-model="showDialog"
+  ></tarot-dialog>
 </template>
 
 <script setup lang="ts">
@@ -49,7 +32,7 @@ import { storeToRefs } from 'pinia';
 import TarotDialog from '../TarotDialog.vue';
 
 const store = useReadingStore();
-const { cardsInReading, openedCards, reading, collection } = storeToRefs(store);
+const { cardsInReading, openedCards, reading } = storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const counter = ref<HTMLInputElement[]>([]);
@@ -62,7 +45,6 @@ const showLargeCard = (num: number) => {
   const card = store.cardByNumber(num);
   largeCardName.value = card.name;
   largeCardLink.value = store.linkByNumber(num);
-  console.log('fromShow', largeCardLink.value);
 };
 
 const onClick = (key: number, num: number) => {

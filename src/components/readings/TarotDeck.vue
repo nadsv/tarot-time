@@ -17,18 +17,14 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue';
-import { shapeData, removeCard, randomCard, preloadImage } from '../../utils/helpers';
+import { shapeData, removeCard, randomCard } from '../../utils/helpers';
 import { config } from 'src/config/';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
 const store = useReadingStore();
-const {
-  currentCardArray,
-  cardsInReading,
-  reading,
-  choosingCardsIsEnabled,
-} = storeToRefs(store);
+const { currentCardArray, cardsInReading, reading, choosingCardsIsEnabled } =
+  storeToRefs(store);
 
 const cardArray = ref<HTMLInputElement[]>([]);
 const card = ref<HTMLInputElement>();
@@ -93,7 +89,7 @@ const deckStyle = (
   position: relative;
   width: calc(var(--card-height) * 2);
   height: calc(var(--card-height) * 2);
-  margin: 50px  auto 0 auto;
+  margin: 50px auto 0 auto;
 }
 
 .card {
@@ -123,10 +119,10 @@ const deckStyle = (
 }
 
 .card.enabled:active {
-    clip-path: unset !important;
-    box-shadow: 0px 0px 5px 5px #f5d254;
-    filter: brightness(150%);
-  }
+  clip-path: unset !important;
+  box-shadow: 0px 0px 5px 5px #f5d254;
+  filter: brightness(150%);
+}
 
 @media (hover: hover) {
   .card.enabled:hover {
