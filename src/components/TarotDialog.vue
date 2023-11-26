@@ -53,4 +53,9 @@ const showDialog = computed({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.large-image {
+  width: 240px;
+  height: 417px;
+}
+</style>

@@ -20,7 +20,7 @@
   </div>
   <tarot-dialog
     :link="largeCardLink"
-    :name="largeCardLink"
+    :name="largeCardName"
     v-model="showDialog"
   ></tarot-dialog>
 </template>
