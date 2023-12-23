@@ -116,6 +116,11 @@ export const config = Object.freeze({
   ],
   LINKS: [
     {
+      title: 'Справочник',
+      link: '/handbook',
+      disabled: false,
+    },
+    {
       title: 'Контакты',
       link: '/contacts',
       disabled: false,
