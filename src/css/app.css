@@ -14,3 +14,8 @@
     --card-height: 130px;
   }
 }
+
+.q-field--dark .q-field__native,
+.q-field--dark .q-field__marginal {
+  color: black !important;
+}

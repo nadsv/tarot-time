@@ -9,6 +9,7 @@
       class="selected-cards-panel"
       :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранная карта</template>
+      <tarot-card-image></tarot-card-image>
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[2]"
       ><template v-slot:header>Значение</template>
@@ -20,6 +21,7 @@
 import { ref } from 'vue';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import TarotList from 'src/components/handbook/TarotList.vue';
+import TarotCardImage from 'src/components/handbook/TarotCardImage.vue';
 
 const panelColors = ref([
   'rgba(255,228,196, 0.8)',

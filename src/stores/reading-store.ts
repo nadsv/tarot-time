@@ -11,6 +11,7 @@ export const useReadingStore = defineStore('readings', {
     collection: 'cards-rider–waite',
     reading: config.READINGS[0],
     listOfCards: [],
+    cardInList: { id: '', name: '' },
     answers: [],
     answerStatus: false,
     errorStatus: false,
@@ -67,6 +68,18 @@ export const useReadingStore = defineStore('readings', {
         if (response.data.message) throw new Error(response.data.message);
         this.answers[payload.index] = response.data;
         this.answerStatus = this.answers.length === this.reading.number;
+      } catch (error) {
+        this.errorStatus = true;
+        console.log('Ошибка получения ответа', error);
+      }
+    },
+
+    async getCardMeanings(id: string) {
+      try {
+        if (this.errorStatus) return;
+        const response = await api.get(`/card/${id}?p=2&f=all`);
+        if (response.data.message) throw new Error(response.data.message);
+        this.cardInList = response.data;
       } catch (error) {
         this.errorStatus = true;
         console.log('Ошибка получения ответа', error);

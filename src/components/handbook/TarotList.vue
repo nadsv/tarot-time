@@ -2,14 +2,16 @@
   <q-input
     v-model="search"
     debounce="200"
-    placeholder="Поиск"
     dense
     borderless
     autofocus
     class="search-input"
   >
-    <template v-slot:append>
+    <template v-slot:prepend>
       <q-icon name="search" />
+    </template>
+    <template v-slot:append>
+      <q-icon name="close" @click="search = ''" class="cursor-pointer" />
     </template>
   </q-input>
   <div class="list-container">
@@ -19,6 +21,7 @@
       size="12px"
       square
       clickable
+      @click="selectCard(card.id, card.name)"
       :style="{ 'background-color': color(card.group) }"
       text-color="accent"
       >{{ card.name }}</q-chip
@@ -43,6 +46,14 @@ const filteredList = computed(() =>
     item.name.includes(search.value.toUpperCase())
   )
 );
+
+const selectCard = (id: string, name: string) => {
+  store.cardInList = {
+    id,
+    name,
+  };
+  store.getCardMeanings(id);
+};
 </script>
 
 <style scoped>
