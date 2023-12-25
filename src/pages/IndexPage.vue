@@ -58,13 +58,10 @@ import TarotDeck from 'src/components/readings/TarotDeck.vue';
 import SelectedCards from 'src/components/readings/SelectedCards.vue';
 import TarotAnswer from 'src/components/readings/TarotAnswer.vue';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
-import { useQuasar, scroll } from 'quasar';
+import { scroll } from 'quasar';
 import { wordDeclination } from 'src/utils/helpers';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
-
-const $q = useQuasar();
-$q.dark.set(true);
 
 const panelColors = ref([
   'rgba(127,58,173, 0.8)',

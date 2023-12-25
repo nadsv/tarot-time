@@ -13,6 +13,7 @@
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[2]"
       ><template v-slot:header>Значение</template>
+      <tarot-card-meaning></tarot-card-meaning>
     </decorative-panel>
   </q-page>
 </template>
@@ -22,6 +23,7 @@ import { ref } from 'vue';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import TarotList from 'src/components/handbook/TarotList.vue';
 import TarotCardImage from 'src/components/handbook/TarotCardImage.vue';
+import TarotCardMeaning from 'src/components/handbook/TarotCardMeaning.vue';
 
 const panelColors = ref([
   'rgba(255,228,196, 0.8)',
