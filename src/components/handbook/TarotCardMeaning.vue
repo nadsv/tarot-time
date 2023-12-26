@@ -5,19 +5,19 @@
         <span class="title text-primary">Арканы:</span> {{cardInList.group}}
       </section>
       <section class="meaning-section">
-        <span class="title text-primary">Ключевые слова:</span> {{cardInList.upright_keywords}}
+        <span class="title text-primary">Ключевые слова:</span> {{field('keywords')}}
       </section>
       <section class="meaning-section">
-        <span class="title text-primary">Ответ на Да/Нет вопрос:</span> {{cardInList.upright_yes}}
+        <span class="title text-primary">Ответ на Да/Нет вопрос:</span> {{field('yes')}}
       </section>
       <section class="meaning-section">
-        <span class="title text-primary">Общее значение:</span> {{cardInList.upright_meaning}}
+        <span class="title text-primary">Общее значение:</span> {{field('meaning')}}
       </section>
       <section class="meaning-section">
-        <span class="title text-primary">В раскладе на отношения:</span> {{cardInList.upright_love}}
+        <span class="title text-primary">В раскладе на отношения:</span> {{field('love')}}
       </section>
       <section class="meaning-section">
-        <span class="title text-primary">В раскладе на ситуацию:</span> {{cardInList.upright_situation}}
+        <span class="title text-primary">В раскладе на ситуацию:</span> {{ field('situation') }}
       </section>
       <div v-if="store.errorStatus" class="error text-negative">
             Ошибка получения толкования расклада
@@ -27,12 +27,21 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
 const store = useReadingStore();
 const { cardInList } = storeToRefs(store);
+
+
+const togglePostion = (position: string)=>{
+        cardInList.position === position
+}
+
+const field = (field: string): string => {
+  console.log(store.cardInList.position + '_' + field)
+  return store.cardInList[store.cardInList.position + '_' + field]
+}
 
 </script>
 

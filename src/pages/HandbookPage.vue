@@ -12,24 +12,33 @@
       <tarot-card-image></tarot-card-image>
     </decorative-panel>
     <decorative-panel :panel-color="panelColors[2]"
-      ><template v-slot:header>Значение</template>
+      ><template v-slot:header>{{title}}</template>
       <tarot-card-meaning></tarot-card-meaning>
     </decorative-panel>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import TarotList from 'src/components/handbook/TarotList.vue';
 import TarotCardImage from 'src/components/handbook/TarotCardImage.vue';
 import TarotCardMeaning from 'src/components/handbook/TarotCardMeaning.vue';
+import { useReadingStore } from 'src/stores/reading-store';
+
+const store = useReadingStore();
 
 const panelColors = ref([
   'rgba(255,228,196, 0.8)',
   'rgba(127,58,173, 0.8)',
   'rgba(245,226,116, 0.8)',
 ]);
+
+const title = computed(()=>{
+  if (store.cardInList.position === '') return 'Значение'
+  return (store.cardInList.position !== 'upright') ? 'Значение перевернутой карты ' + store.cardInList.name : 'Значение прямой карты ' + store.cardInList.name
+})
+
 </script>
 
 <style scoped>

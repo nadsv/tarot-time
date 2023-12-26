@@ -17,8 +17,8 @@
       </q-card-section>
 
       <q-card-actions align="center">
-        <q-btn label="Прямая" color="primary" />
-        <q-btn label="Перевернутая" color="primary" />
+        <q-btn label="Прямая" color="primary" @click="togglePostion('upright')"/>
+        <q-btn label="Перевернутая" color="primary" @click="togglePostion('reversed')"/>
       </q-card-actions>
     </q-card>
   </div>
@@ -33,6 +33,10 @@ const store = useReadingStore();
 const link = computed(
   () => `/assets/cards-rider%E2%80%93waite/${store.cardInList.id}.png`
 );
+
+const togglePostion = (position: string)=>{
+  store.cardInList.position = position
+}
 </script>
 
 <style scoped>

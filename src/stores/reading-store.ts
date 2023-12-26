@@ -11,7 +11,7 @@ export const useReadingStore = defineStore('readings', {
     collection: 'cards-rider–waite',
     reading: config.READINGS[0],
     listOfCards: [],
-    cardInList: { id: '', name: '' },
+    cardInList: { id: '', name: '', position: '' },
     answers: [],
     answerStatus: false,
     errorStatus: false,
@@ -79,7 +79,7 @@ export const useReadingStore = defineStore('readings', {
         if (this.errorStatus) return;
         const response = await api.get(`/card/${id}?p=2&f=all`);
         if (response.data.message) throw new Error(response.data.message);
-        this.cardInList = response.data;
+        this.cardInList = {...response.data, position: 'upright'};
       } catch (error) {
         this.errorStatus = true;
         console.log('Ошибка получения ответа', error);
