@@ -59,7 +59,7 @@ import SelectedCards from 'src/components/readings/SelectedCards.vue';
 import TarotAnswer from 'src/components/readings/TarotAnswer.vue';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import { scroll } from 'quasar';
-import { wordDeclination } from 'src/utils/helpers';
+import { wordDeclination, scrollToElement } from 'src/utils/helpers';
 import { useReadingStore } from 'src/stores/reading-store';
 import { storeToRefs } from 'pinia';
 
@@ -71,15 +71,6 @@ const panelColors = ref([
 
 const store = useReadingStore();
 const { reading, cardsInReading, openedCards, showAnswer } = storeToRefs(store);
-
-const { getScrollTarget, setVerticalScrollPosition } = scroll;
-
-const scrollToElement = (el: HTMLElement, delay: number, time: 0) => {
-  const target = getScrollTarget(el);
-  const offset = el.offsetTop - 20;
-  const duration = time;
-  setTimeout(() => setVerticalScrollPosition(target, offset, duration), delay);
-};
 
 let elToScroll0: HTMLElement | null;
 let elToScroll: HTMLElement | null;

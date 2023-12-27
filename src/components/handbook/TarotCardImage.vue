@@ -15,11 +15,6 @@
           </q-img>
         </div>
       </q-card-section>
-
-      <q-card-actions align="center">
-        <q-btn label="Прямая" color="primary" @click="togglePostion('upright')"/>
-        <q-btn label="Перевернутая" color="primary" @click="togglePostion('reversed')"/>
-      </q-card-actions>
     </q-card>
   </div>
 </template>
@@ -48,4 +43,6 @@ const togglePostion = (position: string)=>{
 .wrapper {
   margin-bottom: 20px;
 }
+
+
 </style>

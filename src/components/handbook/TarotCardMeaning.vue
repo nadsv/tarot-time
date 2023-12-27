@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="cardInList.group" class="container">
     <div class="row justify-center">
       <section class="meaning-section">
         <span class="title text-primary">Арканы:</span> {{cardInList.group}}

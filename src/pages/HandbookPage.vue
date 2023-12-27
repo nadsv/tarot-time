@@ -10,6 +10,12 @@
       :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранная карта</template>
       <tarot-card-image></tarot-card-image>
+      <template v-slot:actionPanel v-if="store.cardInList.id">
+       <q-btn label="Прямая" color="dark"
+          text-color="accent" class="btn" @click="togglePostion('upright')"/>
+        <q-btn label="Перевернутая" color="dark"
+          text-color="accent" class="btn" @click="togglePostion('reversed')"/>
+      </template>
     </decorative-panel>
     <decorative-panel id="scrollToMeaning" :panel-color="panelColors[2]"
       ><template v-slot:header>{{title}}</template>
@@ -19,12 +25,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import TarotList from 'src/components/handbook/TarotList.vue';
 import TarotCardImage from 'src/components/handbook/TarotCardImage.vue';
 import TarotCardMeaning from 'src/components/handbook/TarotCardMeaning.vue';
 import { useReadingStore } from 'src/stores/reading-store';
+import { scrollToElement } from 'src/utils/helpers';
 
 const store = useReadingStore();
 
@@ -38,6 +45,17 @@ onMounted(() => {
   elToScroll1 = document.querySelector('#scrollToMeaning');
 });
 
+const togglePostion = (position: string)=>{
+  store.cardInList.position = position
+}
+
+watch(
+  () => store.cardInList.name,
+  () => {
+    scrollToElement(elToScroll, 1000, 1000);
+  }
+);
+
 const panelColors = ref([
   'rgba(255,228,196, 0.8)',
   'rgba(127,58,173, 0.8)',
@@ -45,23 +63,23 @@ const panelColors = ref([
 ]);
 
 const title = computed(()=>{
-  if (store.cardInList.position === '') return 'Значение'
+  if (!store.cardInList.position) return 'Значение выбранной карты'
   return (store.cardInList.position !== 'upright') ? 'Значение перевернутой карты ' + store.cardInList.name : 'Значение прямой карты ' + store.cardInList.name
 })
 
 </script>
 
 <style scoped>
-#scrollToDeck,
-#scrollToSelectedCards {
-  margin-right: 20px;
-}
 .reading-name {
   animation: light 1.5s ease;
 }
 
 .answer-panel {
   height: auto;
+}
+
+.btn {
+  margin: 0 10px 20px 10px;
 }
 
 @media (max-width: 1840px) {
