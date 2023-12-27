@@ -1,17 +1,17 @@
 <template>
   <q-page class="row items-strech justify-evenly">
-    <decorative-panel id="scrollToDeck" :panel-color="panelColors[0]">
+    <decorative-panel id="scrollToList" :panel-color="panelColors[0]">
       <template v-slot:header><span id="readingName">Карты</span></template>
       <tarot-list></tarot-list>
     </decorative-panel>
     <decorative-panel
-      id="scrollToSelectedCards"
+      id="scrollToSelectedCard"
       class="selected-cards-panel"
       :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранная карта</template>
       <tarot-card-image></tarot-card-image>
     </decorative-panel>
-    <decorative-panel :panel-color="panelColors[2]"
+    <decorative-panel id="scrollToMeaning" :panel-color="panelColors[2]"
       ><template v-slot:header>{{title}}</template>
       <tarot-card-meaning></tarot-card-meaning>
     </decorative-panel>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import TarotList from 'src/components/handbook/TarotList.vue';
 import TarotCardImage from 'src/components/handbook/TarotCardImage.vue';
@@ -27,6 +27,16 @@ import TarotCardMeaning from 'src/components/handbook/TarotCardMeaning.vue';
 import { useReadingStore } from 'src/stores/reading-store';
 
 const store = useReadingStore();
+
+let elToScroll0: HTMLElement | null;
+let elToScroll: HTMLElement | null;
+let elToScroll1: HTMLElement | null;
+
+onMounted(() => {
+  elToScroll0 = document.querySelector('#scrollToList');
+  elToScroll = document.querySelector('#scrollToSelectedCard');
+  elToScroll1 = document.querySelector('#scrollToMeaning');
+});
 
 const panelColors = ref([
   'rgba(255,228,196, 0.8)',

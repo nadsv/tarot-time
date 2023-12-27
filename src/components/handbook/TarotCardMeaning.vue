@@ -39,7 +39,6 @@ const togglePostion = (position: string)=>{
 }
 
 const field = (field: string): string => {
-  console.log(store.cardInList.position + '_' + field)
   return store.cardInList[store.cardInList.position + '_' + field]
 }
 
