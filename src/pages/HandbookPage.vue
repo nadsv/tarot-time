@@ -11,15 +11,23 @@
       ><template v-slot:header>Выбранная карта</template>
       <tarot-card-image></tarot-card-image>
       <template v-slot:actionPanel v-if="store.cardInList.id">
-       <q-btn label="Прямая" color="dark"
+       <q-btn v-if="store.cardInList.position==='reversed'" label="Прямая карта" color="dark"
           text-color="accent" class="btn" @click="togglePostion('upright')"/>
-        <q-btn label="Перевернутая" color="dark"
+        <q-btn v-if="store.cardInList.position==='upright'" label="Перевернутая карта" color="dark"
           text-color="accent" class="btn" @click="togglePostion('reversed')"/>
       </template>
     </decorative-panel>
     <decorative-panel id="scrollToMeaning" :panel-color="panelColors[2]"
       ><template v-slot:header>{{title}}</template>
-      <tarot-card-meaning></tarot-card-meaning>
+      <tarot-card-meaning class="tarot-card-meaning"></tarot-card-meaning>
+      <template v-slot:actionPanel v-if="store.cardInList.id">
+       <q-btn v-if="store.cardInList.position==='reversed'" label="Прямая карта" color="dark"
+          text-color="accent" class="btn" @click="togglePostion('upright')"/>
+       <q-btn v-if="store.cardInList.position==='upright'" label="Перевернутая карта" color="dark"
+          text-color="accent" class="btn" @click="togglePostion('reversed')"/>
+          <q-btn label="Новая карта" color="dark"
+          text-color="accent" class="btn" @click="resetCardInList"/>
+      </template>
     </decorative-panel>
   </q-page>
 </template>
@@ -47,6 +55,11 @@ onMounted(() => {
 
 const togglePostion = (position: string)=>{
   store.cardInList.position = position
+}
+
+const resetCardInList = ()=>{
+  store.cardInList = { id: '', name: '', position: '' };
+  scrollToElement(elToScroll0, 1000, 1000);
 }
 
 watch(
@@ -79,7 +92,11 @@ const title = computed(()=>{
 }
 
 .btn {
-  margin: 0 10px 20px 10px;
+  margin: 0 10px 0 10px;
+}
+
+.tarot-card-meaning{
+  align-self: flex-start;
 }
 
 @media (max-width: 1840px) {

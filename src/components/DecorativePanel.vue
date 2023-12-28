@@ -95,9 +95,12 @@ header {
 }
 
 .action-panel {
-  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
   margin-bottom: 20px;
-  height: 86px;
+  height: 46px;
 }
 
 .left-hint {

@@ -88,7 +88,7 @@ const deckStyle = (
 .deck {
   position: relative;
   width: calc(var(--card-height) * 2);
-  height: calc(var(--card-height) * 2);
+  height: calc(var(--card-height) * 2 + 20px);
   margin: 50px auto 0 auto;
 }
 
