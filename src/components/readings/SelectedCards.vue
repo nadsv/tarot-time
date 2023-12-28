@@ -157,6 +157,7 @@ const cardFaceStyle = (
   justify-content: center;
   align-items: center;
   height: 100%;
+  padding-bottom: 20px;
 }
 
 .large-image {
