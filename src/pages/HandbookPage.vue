@@ -6,18 +6,13 @@
     </decorative-panel>
     <decorative-panel
       id="scrollToSelectedCard"
-      class="selected-cards-panel"
+       :class="{ 'selected-cards-panel': !store.cardInList.id }"
       :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранная карта</template>
       <tarot-card-image></tarot-card-image>
-      <template v-slot:actionPanel v-if="store.cardInList.id">
-       <q-btn v-if="store.cardInList.position==='reversed'" label="Прямая карта" color="dark"
-          text-color="accent" class="btn" @click="togglePostion('upright')"/>
-        <q-btn v-if="store.cardInList.position==='upright'" label="Перевернутая карта" color="dark"
-          text-color="accent" class="btn" @click="togglePostion('reversed')"/>
-      </template>
     </decorative-panel>
-    <decorative-panel id="scrollToMeaning" :panel-color="panelColors[2]"
+    <decorative-panel id="scrollToMeaning" :panel-color="panelColors[2]" 
+    :class="{ 'meaning-panel': !store.cardInList.id }"
       ><template v-slot:header>{{title}}</template>
       <tarot-card-meaning class="tarot-card-meaning"></tarot-card-meaning>
       <template v-slot:actionPanel v-if="store.cardInList.id">
@@ -84,11 +79,12 @@ const title = computed(()=>{
 </script>
 
 <style scoped>
-.reading-name {
-  animation: light 1.5s ease;
+#scrollToList,
+#scrollToSelectedCard {
+  margin-right: 20px;
 }
 
-.answer-panel {
+.meaning-panel {
   height: auto;
 }
 
@@ -101,7 +97,7 @@ const title = computed(()=>{
 }
 
 @media (max-width: 1840px) {
-  .answer-panel {
+  .meaning-panel, .selected-cards-panel {
     height: 0;
     flex-basis: 0 !important;
     flex-shrink: 100;
@@ -122,23 +118,6 @@ const title = computed(()=>{
   .selected-cards-panel {
     margin-right: 15px !important;
     margin-left: 15px !important;
-  }
-}
-
-@keyframes light {
-  from {
-    box-shadow: none;
-    background-color: none;
-  }
-
-  50% {
-    box-shadow: 0 0 7px 7px #f5d254;
-    background-color: #f5d254;
-  }
-
-  to {
-    box-shadow: none;
-    background-color: none;
   }
 }
 </style>
