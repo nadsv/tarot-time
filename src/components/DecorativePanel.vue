@@ -67,6 +67,8 @@ header {
   border-radius: 3px;
   margin: 13px auto 20px auto;
   text-align: center;
+  text-wrap: balance;
+  line-height: 29px;
 }
 
 .wrapper {
@@ -91,7 +93,7 @@ header {
   margin: 0;
   font-size: 16px;
   font-weight: 900;
-  line-height: 14px;
+  line-height: 16px;
 }
 
 .action-panel {
@@ -111,7 +113,7 @@ header {
 
 .left-hint {
   position: absolute;
-  top: 47px;
+  top: 60px;
   left: 4px;
   max-width: 120px;
   padding: 4px;
@@ -123,7 +125,7 @@ header {
 
 .right-hint {
   position: absolute;
-  top: 47px;
+  top: 60px;
   right: 4px;
   padding: 4px;
   border: 3px dotted #b67729;
