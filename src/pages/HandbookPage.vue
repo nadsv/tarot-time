@@ -55,7 +55,7 @@ const togglePostion = (position: string)=>{
 
 const resetCardInList = ()=>{
   store.cardInList = { id: '', name: '', position: '' };
-  scrollToElement(elToScroll0, 1000, 1000);
+  window.scrollTo(0, 0);
 }
 
 watch(
