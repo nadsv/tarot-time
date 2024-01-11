@@ -4,7 +4,6 @@
     debounce="200"
     dense
     borderless
-    autofocus
     class="search-input"
   >
     <template v-slot:prepend>
