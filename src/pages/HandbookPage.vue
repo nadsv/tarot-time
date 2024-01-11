@@ -55,13 +55,13 @@ const togglePostion = (position: string)=>{
 
 const resetCardInList = ()=>{
   store.cardInList = { id: '', name: '', position: '' };
-  window.scrollTo(0, 0);
+  scrollToElement(elToScroll0, 0, 0);
 }
 
 watch(
   () => store.cardInList.name,
   () => {
-    scrollToElement(elToScroll, 1000, 1000);
+    store.cardInList.name && scrollToElement(elToScroll, 1000, 1000);
   }
 );
 
