@@ -50,7 +50,7 @@ onMounted(() => {
 
 const togglePostion = (position: string)=>{
   store.cardInList.position = position;
-  scrollToElement(elToScroll1, 1000, 1000);
+  scrollToElement(elToScroll1, 0, 0);
 }
 
 const resetCardInList = ()=>{
