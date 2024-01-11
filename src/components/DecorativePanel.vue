@@ -103,6 +103,12 @@ header {
   height: 46px;
 }
 
+@media (max-width: 413px) {
+  .action-panel {
+    height: 70px;
+  }
+}
+
 .left-hint {
   position: absolute;
   top: 47px;
