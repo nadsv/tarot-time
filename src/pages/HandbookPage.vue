@@ -108,14 +108,14 @@ const title = computed(()=>{
 }
 
 @media (max-width: 1245px) {
-  .selected-cards-panel {
+  #scrollToList, #scrollToSelectedCard, .selected-cards-panel {
     margin-right: auto !important;
     margin-left: auto !important;
   }
 }
 
 @media (max-width: 639px) {
-  .selected-cards-panel {
+  #scrollToList, #scrollToSelectedCard, .selected-cards-panel {
     margin-right: 15px !important;
     margin-left: 15px !important;
   }
