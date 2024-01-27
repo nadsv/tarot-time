@@ -49,16 +49,12 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue';
-import { useQuasar } from 'quasar';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import TarotList from 'src/components/handbook/TarotList.vue';
 import TarotCardImage from 'src/components/handbook/TarotCardImage.vue';
 import TarotCardMeaning from 'src/components/handbook/TarotCardMeaning.vue';
 import { useReadingStore } from 'src/stores/reading-store';
 import { scrollToElement } from 'src/utils/helpers';
-
-const $q = useQuasar();
-$q.screen.setSizes({ sm: 300, md: 500, lg: 1000, xl: 2000 });
 
 const store = useReadingStore();
 
