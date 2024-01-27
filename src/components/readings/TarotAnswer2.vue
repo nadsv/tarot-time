@@ -1,6 +1,6 @@
 <template>
     <div v-for="(cardName, index) in store.reading.cardNames" :key="cardName" class="row answer justify-center">
-      <h6 class="card-name text-center text-accent">{{cardName}} - {{position(index)}} карта {{store.answers[index].name}}</h6> 
+      <h6 class="card-name text-center text-primary">{{cardName}} - {{position(index)}} карта {{store.answers[index].name}}</h6> 
       <p class="card-meaning text-justify">{{store.answers[index].result}}</p>
   </div>
 </template>
@@ -25,12 +25,11 @@ const position = (num: number): string=> {
 .card-name {
   display: inline-block;
   text-align: center;
-  background-color: black;
-  font-size: 14px;
+  font-size: 20px;
   font-family: 'vinqueregular';
   padding: 5px;
   border-radius: 5px;
-  line-height: 14px;
+  line-height: 20px;
   margin: 0 0 10px 0;
 }
 

@@ -6,30 +6,15 @@
     </decorative-panel>
     <decorative-panel
       id="scrollToSelectedCard"
-      class="selected-cards-panel"
+      :class="{ 'selected-cards-panel': !store.cardInList.id }"
       :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранная карта</template>
       <tarot-card-image></tarot-card-image>
-      <template v-slot:actionPanel v-if="store.cardInList.id">
-        <q-btn
-          v-if="store.cardInList.position === 'reversed'"
-          label="Прямая карта"
-          color="dark"
-          text-color="accent"
-          class="btn"
-          @click="togglePostion('upright')"
-        />
-        <q-btn
-          v-if="store.cardInList.position === 'upright'"
-          label="Перевернутая карта"
-          color="dark"
-          text-color="accent"
-          class="btn"
-          @click="togglePostion('reversed')"
-        />
-      </template>
     </decorative-panel>
-    <decorative-panel id="scrollToMeaning" :panel-color="panelColors[2]"
+    <decorative-panel
+      id="scrollToMeaning"
+      :panel-color="panelColors[2]"
+      :class="{ 'meaning-panel': !store.cardInList.id }"
       ><template v-slot:header>{{ title }}</template>
       <tarot-card-meaning class="tarot-card-meaning"></tarot-card-meaning>
       <div class="action-panel"></div>
@@ -89,18 +74,18 @@ onMounted(() => {
 
 const togglePostion = (position: string) => {
   store.cardInList.position = position;
-  scrollToElement(elToScroll1, 1000, 1000);
+  scrollToElement(elToScroll1, 0, 0);
 };
 
 const resetCardInList = () => {
   store.cardInList = { id: '', name: '', position: '' };
-  scrollToElement(elToScroll0, 1000, 1000);
+  scrollToElement(elToScroll0, 0, 0);
 };
 
 watch(
   () => store.cardInList.name,
   () => {
-    scrollToElement(elToScroll, 1000, 1000);
+    store.cardInList.name && scrollToElement(elToScroll, 1000, 1000);
   }
 );
 
@@ -119,6 +104,15 @@ const title = computed(() => {
 </script>
 
 <style scoped>
+#scrollToList,
+#scrollToSelectedCard {
+  margin-right: 20px;
+}
+
+.meaning-panel {
+  height: auto;
+}
+
 .btn {
   margin: 0 10px 0 10px;
 }
@@ -127,7 +121,33 @@ const title = computed(() => {
   align-self: flex-start;
 }
 
-.action-panel {
-  background-color: blue;
+@media (max-width: 1840px) {
+  .meaning-panel,
+  .selected-cards-panel {
+    height: 0;
+    flex-basis: 0 !important;
+    flex-shrink: 100;
+    overflow: hidden;
+    border: none !important;
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 1245px) {
+  #scrollToList,
+  #scrollToSelectedCard,
+  .selected-cards-panel {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+}
+
+@media (max-width: 639px) {
+  #scrollToList,
+  #scrollToSelectedCard,
+  .selected-cards-panel {
+    margin-right: 15px !important;
+    margin-left: 15px !important;
+  }
 }
 </style>
