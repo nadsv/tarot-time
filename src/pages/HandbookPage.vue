@@ -11,22 +11,52 @@
       ><template v-slot:header>Выбранная карта</template>
       <tarot-card-image></tarot-card-image>
       <template v-slot:actionPanel v-if="store.cardInList.id">
-       <q-btn v-if="store.cardInList.position==='reversed'" label="Прямая карта" color="dark"
-          text-color="accent" class="btn" @click="togglePostion('upright')"/>
-        <q-btn v-if="store.cardInList.position==='upright'" label="Перевернутая карта" color="dark"
-          text-color="accent" class="btn" @click="togglePostion('reversed')"/>
+        <q-btn
+          v-if="store.cardInList.position === 'reversed'"
+          label="Прямая карта"
+          color="dark"
+          text-color="accent"
+          class="btn"
+          @click="togglePostion('upright')"
+        />
+        <q-btn
+          v-if="store.cardInList.position === 'upright'"
+          label="Перевернутая карта"
+          color="dark"
+          text-color="accent"
+          class="btn"
+          @click="togglePostion('reversed')"
+        />
       </template>
     </decorative-panel>
     <decorative-panel id="scrollToMeaning" :panel-color="panelColors[2]"
-      ><template v-slot:header>{{title}}</template>
+      ><template v-slot:header>{{ title }}</template>
       <tarot-card-meaning class="tarot-card-meaning"></tarot-card-meaning>
+      <div class="action-panel"></div>
       <template v-slot:actionPanel v-if="store.cardInList.id">
-       <q-btn v-if="store.cardInList.position==='reversed'" label="Прямая карта" color="dark"
-          text-color="accent" class="btn" @click="togglePostion('upright')"/>
-       <q-btn v-if="store.cardInList.position==='upright'" label="Перевернутая карта" color="dark"
-          text-color="accent" class="btn" @click="togglePostion('reversed')"/>
-          <q-btn label="Новая карта" color="dark"
-          text-color="accent" class="btn" @click="resetCardInList"/>
+        <q-btn
+          v-if="store.cardInList.position === 'reversed'"
+          label="Прямая карта"
+          color="dark"
+          text-color="accent"
+          class="btn"
+          @click="togglePostion('upright')"
+        />
+        <q-btn
+          v-if="store.cardInList.position === 'upright'"
+          label="Перевернутая карта"
+          color="dark"
+          text-color="accent"
+          class="btn"
+          @click="togglePostion('reversed')"
+        />
+        <q-btn
+          label="Новая карта"
+          color="dark"
+          text-color="accent"
+          class="btn"
+          @click="resetCardInList"
+        />
       </template>
     </decorative-panel>
   </q-page>
@@ -34,12 +64,16 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue';
+import { useQuasar } from 'quasar';
 import DecorativePanel from 'src/components/DecorativePanel.vue';
 import TarotList from 'src/components/handbook/TarotList.vue';
 import TarotCardImage from 'src/components/handbook/TarotCardImage.vue';
 import TarotCardMeaning from 'src/components/handbook/TarotCardMeaning.vue';
 import { useReadingStore } from 'src/stores/reading-store';
 import { scrollToElement } from 'src/utils/helpers';
+
+const $q = useQuasar();
+$q.screen.setSizes({ sm: 300, md: 500, lg: 1000, xl: 2000 });
 
 const store = useReadingStore();
 
@@ -53,14 +87,15 @@ onMounted(() => {
   elToScroll1 = document.querySelector('#scrollToMeaning');
 });
 
-const togglePostion = (position: string)=>{
-  store.cardInList.position = position
-}
+const togglePostion = (position: string) => {
+  store.cardInList.position = position;
+  scrollToElement(elToScroll1, 1000, 1000);
+};
 
-const resetCardInList = ()=>{
+const resetCardInList = () => {
   store.cardInList = { id: '', name: '', position: '' };
   scrollToElement(elToScroll0, 1000, 1000);
-}
+};
 
 watch(
   () => store.cardInList.name,
@@ -75,69 +110,24 @@ const panelColors = ref([
   'rgba(245,226,116, 0.8)',
 ]);
 
-const title = computed(()=>{
-  if (!store.cardInList.position) return 'Значение выбранной карты'
-  return (store.cardInList.position !== 'upright') ? 'Значение перевернутой карты ' + store.cardInList.name : 'Значение прямой карты ' + store.cardInList.name
-})
-
+const title = computed(() => {
+  if (!store.cardInList.position) return 'Значение выбранной карты';
+  return store.cardInList.position !== 'upright'
+    ? 'Значение перевернутой карты ' + store.cardInList.name
+    : 'Значение прямой карты ' + store.cardInList.name;
+});
 </script>
 
 <style scoped>
-.reading-name {
-  animation: light 1.5s ease;
-}
-
-.answer-panel {
-  height: auto;
-}
-
 .btn {
   margin: 0 10px 0 10px;
 }
 
-.tarot-card-meaning{
+.tarot-card-meaning {
   align-self: flex-start;
 }
 
-@media (max-width: 1840px) {
-  .answer-panel {
-    height: 0;
-    flex-basis: 0 !important;
-    flex-shrink: 100;
-    overflow: hidden;
-    border: none !important;
-    margin: 0 !important;
-  }
-}
-
-@media (max-width: 1245px) {
-  .selected-cards-panel {
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
-}
-
-@media (max-width: 639px) {
-  .selected-cards-panel {
-    margin-right: 15px !important;
-    margin-left: 15px !important;
-  }
-}
-
-@keyframes light {
-  from {
-    box-shadow: none;
-    background-color: none;
-  }
-
-  50% {
-    box-shadow: 0 0 7px 7px #f5d254;
-    background-color: #f5d254;
-  }
-
-  to {
-    box-shadow: none;
-    background-color: none;
-  }
+.action-panel {
+  background-color: blue;
 }
 </style>
