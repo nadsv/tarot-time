@@ -63,20 +63,6 @@
             >tarotmoment@yandex.ru</a
           >
         </p>
-        <div class="container text-white central-image">
-          <q-img
-            src="assets/contacts_1.jpg"
-            spinner-color="white"
-            img-class="my-custom-image"
-            class="rounded-borders"
-            alt="Картинка с изображением стола, на котором стоят свечи, вазы с цветами и лежит древняя книга"
-          >
-            <div class="absolute-bottom text-subtitle1 text-center font-family">
-              Карты Таро - это ваше зеркало, и только вы решаете, что оно
-              отражает.
-            </div>
-          </q-img>
-        </div>
       </div>
       <template v-slot:footer>© Момент Таро</template>
     </decorative-panel>
@@ -114,7 +100,7 @@ const panelColors = ref([
 .container {
   margin-left: 20px;
   margin-right: 20px;
-  max-width: 550px;
+  min-height: 600px;
 }
 
 .accent-text {
@@ -127,7 +113,6 @@ const panelColors = ref([
   height: 100%;
   flex-direction: column;
   justify-content: center;
-  margin-top: -50px;
 }
 
 .side-panel {
@@ -135,7 +120,6 @@ const panelColors = ref([
   height: 100%;
   flex-direction: column;
   justify-content: center;
-  margin-top: -30px;
 }
 
 .email-link {
@@ -146,6 +130,7 @@ const panelColors = ref([
 
 .contacts-text {
   font-size: 20px;
+  margin-bottom: 40px;
 }
 
 .email-link:hover {
@@ -157,31 +142,9 @@ const panelColors = ref([
   font-family: 'vinqueregular';
 }
 
-.side-panel-1,
-.side-panel-2 {
-  display: none !important;
-  padding-top: 20px;
-}
-
-.contacts-text {
-  margin-top: 30px;
-}
-
 @media (min-width: 1196px) {
-  .side-panel-1 {
-    display: flex !important;
-  }
-  .central-image {
-    display: none;
-  }
   .contacts-text {
     font-size: 24px;
-  }
-}
-
-@media (min-width: 1800px) {
-  .side-panel-2 {
-    display: flex !important;
   }
 }
 </style>
