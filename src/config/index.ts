@@ -121,7 +121,7 @@ export const config = Object.freeze({
       disabled: false,
     },
     {
-      title: 'Контакты',
+      title: 'О проекте',
       link: '/contacts',
       disabled: false,
     },
