@@ -2,7 +2,7 @@
   <q-page class="row justify-evenly">
     <decorative-panel class="side-panel-1" :panel-color="panelColors[0]">
       <template v-slot:header> О гадании на картах Таро </template>
-      <div class="container side-panel">
+      <div class="container side-panel side-panel-start">
         <p>
           <span class="accent-text">Гадание на картах Таро</span> - это один из
           вариантов гадания, который использует специальную колоду из 78 карт с
@@ -68,11 +68,11 @@
     </decorative-panel>
 
     <decorative-panel class="side-panel-2" :panel-color="panelColors[2]">
-      <div class="container text-white side-panel">
+      <div class="container text-white side-panel side-panel-end">
         <q-img
           src="assets/contacts_2.jpg"
           spinner-color="white"
-          img-class="my-custom-image"
+          img-class="contact-image"
           class="rounded-borders"
           alt="Картинка с изображением стола, на котором стоят свечи, вазы с цветами и лежит старые карты Таро"
         >
@@ -100,7 +100,6 @@ const panelColors = ref([
 .container {
   margin-left: 20px;
   margin-right: 20px;
-  min-height: 600px;
 }
 
 .accent-text {
@@ -122,6 +121,14 @@ const panelColors = ref([
   justify-content: center;
 }
 
+.side-panel-start {
+    justify-content: flex-start;
+  }
+
+.side-panel-end {
+  padding: 20px 0;
+}
+
 .email-link {
   display: inline-block;
   color: white;
@@ -141,6 +148,7 @@ const panelColors = ref([
 .font-family {
   font-family: 'vinqueregular';
 }
+
 
 @media (min-width: 1196px) {
   .contacts-text {
