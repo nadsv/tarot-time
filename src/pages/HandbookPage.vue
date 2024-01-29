@@ -96,9 +96,10 @@ const title = computed(()=>{
   align-self: flex-start;
 }
 
-@media (max-width: 1840px) {
+@media (max-width: 1000px) {
   .meaning-panel, .selected-cards-panel {
     height: 0;
+    width: 0;
     flex-basis: 0 !important;
     flex-shrink: 100;
     overflow: hidden;
