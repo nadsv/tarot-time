@@ -6,22 +6,42 @@
     </decorative-panel>
     <decorative-panel
       id="scrollToSelectedCard"
-       :class="{ 'selected-cards-panel': !store.cardInList.id }"
+      :class="{ 'selected-cards-panel': !store.cardInList.id }"
       :panel-color="panelColors[1]"
       ><template v-slot:header>Выбранная карта</template>
       <tarot-card-image></tarot-card-image>
     </decorative-panel>
-    <decorative-panel id="scrollToMeaning" :panel-color="panelColors[2]" 
-    :class="{ 'meaning-panel': !store.cardInList.id }"
-      ><template v-slot:header>{{title}}</template>
+    <decorative-panel
+      id="scrollToMeaning"
+      :panel-color="panelColors[2]"
+      :class="{ 'meaning-panel': !store.cardInList.id }"
+      ><template v-slot:header>{{ title }}</template>
       <tarot-card-meaning class="tarot-card-meaning"></tarot-card-meaning>
+      <div class="action-panel"></div>
       <template v-slot:actionPanel v-if="store.cardInList.id">
-       <q-btn v-if="store.cardInList.position==='reversed'" label="Прямая карта" color="dark"
-          text-color="accent" class="btn" @click="togglePostion('upright')"/>
-       <q-btn v-if="store.cardInList.position==='upright'" label="Перевернутая карта" color="dark"
-          text-color="accent" class="btn" @click="togglePostion('reversed')"/>
-          <q-btn label="Новая карта" color="dark"
-          text-color="accent" class="btn" @click="resetCardInList"/>
+        <q-btn
+          v-if="store.cardInList.position === 'reversed'"
+          label="Прямая карта"
+          color="dark"
+          text-color="accent"
+          class="btn"
+          @click="togglePostion('upright')"
+        />
+        <q-btn
+          v-if="store.cardInList.position === 'upright'"
+          label="Перевернутая карта"
+          color="dark"
+          text-color="accent"
+          class="btn"
+          @click="togglePostion('reversed')"
+        />
+        <q-btn
+          label="Новая карта"
+          color="dark"
+          text-color="accent"
+          class="btn"
+          @click="resetCardInList"
+        />
       </template>
     </decorative-panel>
   </q-page>
@@ -48,15 +68,15 @@ onMounted(() => {
   elToScroll1 = document.querySelector('#scrollToMeaning');
 });
 
-const togglePostion = (position: string)=>{
+const togglePostion = (position: string) => {
   store.cardInList.position = position;
   scrollToElement(elToScroll1, 0, 0);
-}
+};
 
-const resetCardInList = ()=>{
+const resetCardInList = () => {
   store.cardInList = { id: '', name: '', position: '' };
   scrollToElement(elToScroll0, 0, 0);
-}
+};
 
 watch(
   () => store.cardInList.name,
@@ -71,11 +91,12 @@ const panelColors = ref([
   'rgba(245,226,116, 0.8)',
 ]);
 
-const title = computed(()=>{
-  if (!store.cardInList.position) return 'Значение выбранной карты'
-  return (store.cardInList.position !== 'upright') ? 'Значение перевернутой карты ' + store.cardInList.name : 'Значение прямой карты ' + store.cardInList.name
-})
-
+const title = computed(() => {
+  if (!store.cardInList.position) return 'Значение выбранной карты';
+  return store.cardInList.position !== 'upright'
+    ? 'Значение перевернутой карты ' + store.cardInList.name
+    : 'Значение прямой карты ' + store.cardInList.name;
+});
 </script>
 
 <style scoped>
@@ -92,12 +113,13 @@ const title = computed(()=>{
   margin: 0 10px 0 10px;
 }
 
-.tarot-card-meaning{
+.tarot-card-meaning {
   align-self: flex-start;
 }
 
-@media (max-width: 1000px) {
-  .meaning-panel, .selected-cards-panel {
+@media (max-width: 1840px) {
+  .meaning-panel,
+  .selected-cards-panel {
     height: 0;
     width: 0;
     flex-basis: 0 !important;
@@ -109,14 +131,18 @@ const title = computed(()=>{
 }
 
 @media (max-width: 1245px) {
-  #scrollToList, #scrollToSelectedCard, .selected-cards-panel {
+  #scrollToList,
+  #scrollToSelectedCard,
+  .selected-cards-panel {
     margin-right: auto !important;
     margin-left: auto !important;
   }
 }
 
 @media (max-width: 639px) {
-  #scrollToList, #scrollToSelectedCard, .selected-cards-panel {
+  #scrollToList,
+  #scrollToSelectedCard,
+  .selected-cards-panel {
     margin-right: 15px !important;
     margin-left: 15px !important;
   }
