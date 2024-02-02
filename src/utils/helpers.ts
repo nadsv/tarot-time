@@ -68,7 +68,7 @@ export const color = (group: string): string => {
 const { getScrollTarget, setVerticalScrollPosition } = scroll;
 export const scrollToElement = (el: HTMLElement, delay: number, time: 0) => {
   const target = getScrollTarget(el);
-  const offset = el.offsetTop - 20;
+  const offset = el.offsetTop;
   const duration = time;
   setTimeout(() => setVerticalScrollPosition(target, offset, duration), delay);
 };

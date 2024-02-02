@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row items-strech justify-evenly">
+  <q-page class="row items-strech q-page">
     <decorative-panel id="scrollToList" :panel-color="panelColors[0]">
       <template v-slot:header><span id="readingName">Карты</span></template>
       <tarot-list></tarot-list>
@@ -117,7 +117,17 @@ const title = computed(() => {
   align-self: flex-start;
 }
 
+.q-page {
+  justify-content: space-evenly;
+}
+
 @media (max-width: 1840px) {
+  .q-page {
+     flex-direction: column;
+     max-width: 750px;
+     margin: 0 auto;
+  }
+
   .meaning-panel,
   .selected-cards-panel {
     height: 0;
