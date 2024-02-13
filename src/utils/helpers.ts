@@ -72,3 +72,27 @@ export const scrollToElement = (el: HTMLElement, delay: number, time: 0) => {
   const duration = time;
   setTimeout(() => setVerticalScrollPosition(target, offset, duration), delay);
 };
+
+export async function copyTextFromChildren(parentId: string) {
+  const parent = document.getElementById(parentId);
+  if (!parent) return;
+  let text = "";
+  function traverseChildren(node: HTMLElement) {
+    console.log(node.tagName, node.children )
+    if (node.textContent && (node.tagName === 'P' || node.tagName === 'H6' )) {
+      text += node.textContent + "\n\r";
+    }
+    if (node.children.length > 0) {
+      for (const child of node.children) {
+        traverseChildren(child);
+      }
+    }
+  }
+  traverseChildren(parent);
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+    console.error("The action failed", error);
+  }
+}
+
